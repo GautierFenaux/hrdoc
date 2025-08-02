@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block title %}Profil{% endblock %}
+{% block body %}
+	{{ include('./components/message.html.twig')}}
+	<div class="profil-info-wrapper">
+		<h3 class="profil-title">Informations générales :</h3>
+		<div class="profil-general-info">
+			<div class="profil-field">
+				<label for="">Prénom :</label>
+				<span>{{ app.user.name}}</span>
+			</div>
+			<div class="profil-field">
+				<label for="">Nom de famille :</label>
+				<span>{{  app.user.surName}}</span>
+			</div>
+			<div class="profil-field">
+				<label for="">Métier :</label>
+				<span>{{  app.user.metier}}</span>
+			</div>
+			<div class="profil-field">
+				<label for="">Département :</label>
+				<span>{{  app.user.departement}}</span>
+			</div>
+			<div class="profil-field">
+				<label for="">Manager :</label>
+				<span>{{  app.user.manager.name }}</span>
+			</div>
+			<div class="profil-field">
+				<label for="">Eligibilité au télétravail :</label>
+				<span>
+					{{  app.user.eligibleTT ? 'Oui' : 'Non' }}
+				</span>
+			</div>
+			<div class="profil-field">
+				<label for="">Eligibilité au CET :</label>
+				<span>
+					{{  app.user.eligibleCET ? 'Oui' : 'Non' }}
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="flex-row">
+		<li>
+			<a id="btn-kit" class="btn" href="{{ path('download_kit') }}">Kit d'intégration</a>
+		</li>
+	</div>
+{% endblock %}

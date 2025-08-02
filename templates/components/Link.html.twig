@@ -1,0 +1,41 @@
+{% macro get_icon(action, role) %}
+	{% if action == "show" %}
+		<span class="tooltiptext">Afficher</span>
+		<i class="fas fa-eye "></i>
+	{% elseif action == "edit" and role == "rh" %}
+		<span class="tooltiptext">Signer</span>
+		<i class="fas fa-file-signature "></i>
+	{% elseif (action == "edit" or action == "reopen") %}
+		{% if role == "rh" %}
+			<span class="tooltiptext">Réouvrir</span>
+			<i class="fas fa-undo"></i>
+		{% else %}
+			<span class="tooltiptext">Modifier</span>
+			<i class="fa fa-pencil"></i>
+		{% endif %}
+	{% elseif action == "download"%}
+		<span class="tooltiptext">Télécharger</span>
+		<i class="fa-solid fa-download "></i>
+	{% elseif action == "signature" %}
+		<span class="tooltiptext">Signer</span>
+		<i class="fas fa-file-signature "></i>
+	{% elseif action == "refuse" %}
+		<span class="tooltiptext">Refuser</span>
+		<i class="fa-solid fa-xmark"></i>
+	{% elseif action == "relaunch" %}
+		<span class="tooltiptext">Relancer</span>
+		<i class="fa-regular fa-bell fa-xl"></i>
+	{% endif %}
+{% endmacro %}
+	{# 
+		Composant Link (src/Twig/Components/Link.php) permet d'afficher la bonne icône avec la route qui lui est reliée en fonction de l'action et, pour le cet, en fonction du cas également 
+	#}
+{% if isDisabled %}
+	<a class="btn-table-form cet-links link-icon tooltip btn-disabled ">
+		{{ _self.get_icon(dataRequestType, role) }}
+	</a>
+{% else %}
+		<a href="{{ this.url() }}" class="btn-table-form cet-links link-icon cet-links-dashboard tooltip {{ classToAdd }}" {{ isTargetBlank ? "target='_blank'" : ''}} data-controller="link" data-link-id-value="{{ entity.id is defined ? entity.id : '' }}" data-action="{{dataAction}}" data-request-type={{dataRequestType}} >
+		{{ _self.get_icon(dataRequestType, role) }}
+	</a>
+{% endif %}

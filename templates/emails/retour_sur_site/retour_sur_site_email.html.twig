@@ -1,0 +1,40 @@
+<p>
+
+Bonjour,</br></br>
+
+{{ form.manager.name }} vient d'effectuer une demande de retour sur site concernant {{ form.user.name }} {{ form.user.surName }}.</br></br>
+
+Veuillez trouver les raisons de ce retour sur site ci-dessous :
+
+<ul>
+    {% if form.desorganiseService is same as true %}
+        <li>Désorganise le service</li>
+    {% endif %}
+
+    {% if form.autonomieInsuffisante is same as true %}
+        <li>Autonomie insuffisante</li>
+    {% endif %}
+
+    {% if form.problemesConnexion is same as true %}
+        <li>Problémes de connexion</li>
+    {% endif %}
+
+    {% if form.collaborateurInjoignable is same as true %}
+        <li>Collaborateur injoignable</li>
+    {% endif %}
+
+    {% if form.diminutionProductivite is same as true %}
+        <li>Diminution de la productivité</li>
+    {% endif %}
+
+    {% if form.autres is not null %}
+        <li>{{ form.autres }}</li>
+    {% endif %}
+</ul>
+
+Pour voir les modifications cliquer sur ce <a href="{{ target_url }}">lien</a>
+
+
+<p/>
+
+<p>Cordialement</p>

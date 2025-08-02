@@ -1,0 +1,87 @@
+<tr>
+	<td>{{ entity.createdAt|date('d/m/Y') }}</td>
+	{% if get_class_name(entity) == 'cet' %}
+		<td>
+			{% if entity.alimentation == true %}
+				<i class="fa fa-check" aria-hidden="true"></i>
+			{% endif %}
+		</td>
+		<td>
+			{% if entity.utilisation == true %}
+				<i class="fa fa-check" aria-hidden="true"></i>
+			{% endif %}
+		</td>
+		<td>
+			{% if entity.restitution == true %}
+				<i class="fa fa-check" aria-hidden="true"></i>
+			{% endif %}
+		</td>
+		<td>{{ entity.commentaireSupHierarchique }}</td>
+		<td>{{ entity.commentaireDRH }}</td>
+		<td>{{ entity.state.value }}</td>
+		{% set case %}
+		{% if entity.utilisation == true %}
+			utilisation
+		{% elseif entity.alimentation == true %}
+			alimentation
+		{% elseif entity.restitution == true %}
+			restitution
+		{% endif %}
+		{% endset %}
+		<td>
+			{% if entity.state.value == 'réouvert' %}
+				<twig:Link :entity="entity" :case="case" action="edit" dataRequestType="edit"/>
+			{% elseif entity.state.value == 'validé-rh' %}
+				<twig:Link :entity="entity" action="download" dataRequestType="download"/>
+				{% else %}
+			{% endif %}
+		</td>
+	{% elseif get_class_name(entity) == 'teletravailform' %}
+		<td>{{ date(entity.dateFinTeletravail)|date('Y') }}</td>
+		<td>{{ entity.commentaireManager }}</td>
+		<td>{{ entity.commentaireDRH }}</td>
+		<td>{{ entity.state.value }}</td>
+		<td>
+			{% if entity.state.value == 'validé-rh' or entity.state.value == 'refus-rh' %}
+				<twig:Link :entity="entity" action="edit" dataRequestType="edit"/>
+			{% elseif entity.state.value == 'réouvert'%}
+				<twig:Link :entity="entity" action="edit" dataRequestType="edit"/>
+			{% elseif entity.state.value == 'validé'%}
+				<twig:Link :entity="entity" action="download" dataRequestType="download"/>
+			{% else %}
+				<twig:Link :entity="entity" action="show" dataRequestType="show"/>
+			{% endif %}
+		</td>
+	{% elseif get_class_name(entity) == 'astreinte'%}
+		<td>{{ date(entity.debutAstreinte)|date('d/m/Y') }}</td>
+		<td>{{ date(entity.finAstreinte)|date('d/m/Y') }}</td>
+		<td>{{ entity.state }}</td>
+		<td>
+			{% if entity.state == 'validé-manager' 
+				or entity.state == 'validé-rh' 
+				or entity.state == 'réouvert-manager-postop' 
+				or entity.state == 'réouvert-rh-postop'
+			%}
+				<twig:Link :entity="entity" action="edit" dataRequestType="edit"/>
+			{% elseif entity.state == 'validé-manager-postop' 
+				or entity.state == 'validé-collaborateur-postop' 
+				or entity.state == 'validé-collaborateur' 
+			%}
+			{% else %}
+				<twig:Link :entity="entity" action="download" dataRequestType="download" />
+			{% endif %}
+		</td>
+	{% elseif get_class_name(entity) == 'retour_sur_site'%}
+		<td>{{ date(entity.dateFinTeletravail)|date('d/m/Y') }}</td>
+		<td>{{ entity.state }}</td>
+		<td>
+			{% if entity.state == 'validé-rh' or entity.state == 'refus-rh' %}
+				<twig:Link :entity="entity" action="edit" dataRequestType="edit"/>
+			{% elseif entity.state == 'validé' or entity.state == 'refusé'%}
+				<twig:Link :entity="entity" action="download" dataRequestType="download"/>
+			{% else %}
+				<twig:Link :entity="entity" action="show" dataRequestType="show"/>
+			{% endif %}
+		</td>
+	{% endif %}
+</tr>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet"/>
+
+		<style>
+			* {
+				margin: 0
+			}
+			body {
+				font-family: 'Arimo';
+				font-size: 12px
+			}
+
+			.wrapper {
+				padding: 50px;
+				color: #1f2b51
+			}
+
+			.margin_bottom {
+				margin-bottom: 25px;
+			}
+
+			.margin_tb {
+				margin: 25px 0;
+			}
+
+			.padding {
+				padding: 5px
+			}
+
+			.background_color_title {
+				background-color: #00b2b9;
+				color: white;
+			}
+
+			h1 {
+				text-align: center;
+				margin: 15px 0;
+			}
+
+			td {
+				vertical-align: top;
+			}
+
+			.background-color-table {
+				background-color: #f1f9f5
+			}
+
+			.table_versement {
+				width: 100%;
+			}
+
+			.table_versement thead tr th {
+				padding: 10px;
+			}
+
+			.table_versement tbody tr td {
+				border-bottom: 4px solid #f1f9f5;
+				border-right: 4px solid #f1f9f5;
+				text-align: center;
+				padding: 10px;
+			}
+
+			.table_versement tbody tr td:first-child {
+				border-left: 4px solid #f1f9f5;
+			}
+
+			h4 {
+				background-color: #02a0a5;
+				padding: 10px;
+				margin-bottom: 5px;
+				color: white;
+			}
+			p {
+				padding: 15px 15px 30px 10px
+			}
+
+			.border-page {
+				height: 10px;
+				width: 100%;
+				background-color: #9ED5C0;
+			}
+
+			.explication-table > tbody > tr > td:first-child,
+			#endingTable > tbody > tr > td:first-child {
+				border: 5px solid #f1f9f5;
+				padding: 15px;
+			}
+
+			#secondEndingtable {
+				border: 5px solid #f1f9f5;
+				padding: 15px;
+			}
+
+			.absolute {
+				position: absolute;
+				bottom: 0
+			}
+
+			.title-color {
+				color: #02a0a5;
+				font-weight: 600;
+                width: 140px;
+			}
+
+			.padding-table {
+				padding: 15px ;
+			}
+
+ 			#summaryTable thead tr th, #summaryTable tbody tr td {
+				border-left: 5px solid #f1f9f5;
+				border-bottom: 5px solid #f1f9f5;
+ 			}
+
+			#summaryTable thead tr th:first-child  {
+				text-align: left;
+ 			}
+	
+	
+			#summaryTable thead tr th:last-child, #summaryTable tbody tr td:last-child {
+				border-right: 5px solid #f1f9f5;
+ 			}
+
+			.explication-table {
+				margin: 20px 0 ;
+			}
+
+			#summaryTable {
+				margin-bottom: 40px;
+                padding-top: 40px;
+                width: 100%;
+			}
+
+            .last-paragraph {
+                margin-bottom: 40px;
+            }
+
+			.tangerine {
+				font-family: "Tangerine", cursive;
+				font-weight: 400;
+				font-style: normal;
+				font-size: 30px;
+			}
+
+		</style>
+	</head>
+
+	<body>
+
+		<div class="border-page"></div>
+		<div class="wrapper">
+			<div style="width: 100%">
+				<img src="{{ logo }}" alt="" style="width:200px ; height:95px"/>
+			</div>
+
+			<h1>Demande de restitution
+				<br>
+				d'un compte épargne-temps</h1>
+
+			<table class="margin_bottom" style="width:100%; background-color: #f1f9f5; padding: 15px">
+				<tbody>
+					<tr>
+						<td class="padding">Direction : {{ cet.user.departement }}</td>
+					</tr>
+					<tr>
+						<td class="padding">Nom : {{ cet.user.surName }}</td>
+						<td class="padding">Prénom : {{ cet.user.name }}</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h4>Modalités d'utilisation du CET sous forme monétaire</h4>
+
+
+			<table class="explication-table" style="width: 100%">
+				<tbody>
+					<tr>
+						<td>
+							<table class="endingTable1">
+								<tbody>
+									<tr>
+										<td class="title-color">
+											a) Restitution de l'épargne en argent
+										</td>
+										<td>
+											Lorsque le plan a été alimenté par des congés payés attribués au-delà de la 5e semaine, cette épargne peut être restituée  dans la limite des droits investis. En conséquence, les jours de congés annuels épargnés n’excédant pas le minimum légal de cinq semaines ne pourront pas faire l’objet d’une monétisation. Le salarié doit en faire la demande par écrit un mois avant la date de versement souhaité.
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="explication-table" style="width: 100%">
+				<tbody>
+					<tr>
+						<td>
+							<table class="endingTable1">
+								<tbody>
+									<tr>
+										<td class="title-color">
+											b) Financement
+											des prestations de
+											retraite
+										</td>
+										<td>
+											Le salarié peut utiliser le compte épargne-temps : <br><br>
+											- pour le rachat de cotisations d’assurance vieillesse du régime 
+											général prévu à l’article L.351-14-1 du Code de la Sécurité 
+											Sociale ; <br><br>
+											- pour contribuer au financement de prestations de retraite 
+											supplémentaire à caractère collectif et obligatoire visées à 
+											l’article L.911-1 du Code de la sécurité sociale.
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+
+			<table class="explication-table" style="width: 100%">
+				<tbody>
+					<tr>
+						<td>
+							<table class="endingTable1">
+								<tbody>
+									<tr>
+										<td class="title-color">
+											c) Versement à un plan d'épargne salariale
+										</td>
+										<td>
+											Le complément de rémunération différé peut prendre la 
+											forme d’un versement à un plan d’épargne salariale dans les 
+											conditions prévues par les textes en vigueur.
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h4>Description de la demande </h4>
+			<p>La demande de paiement doit être faite au plus tard avant la fin de chaque semestre.</p>
+			<table cellspacing="0" id="summaryTable">
+				<thead>
+					<tr class="background-color-table">
+						<th class="padding-table">Nature des droits</th>
+						<th class="padding-table">Nombre de jours</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr >
+						<td class="padding-table"> Liquidation en monétaire des jours de congés annuels au-delà de la 5ème semaine </td>
+						<td class="padding-table"> </td>
+					</tr>
+					<tr>
+						<td class="padding-table">TOTAL</td>
+						<td class="padding-table"> {{cet.nbJoursLiquide}}</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h4>Description de la demande </h4>
+			<p class="last-paragraph">
+			Les temps affectés dans le Compte Épargne-Temps sont dès leur transfert, valorisés en équivalent monétaire sur la base 
+			de la rémunération perçue à cette date par le Collaborateur : <br><br>
+			Lors de leur utilisation par restitution en argent, ils seront valorisés sur la base de la moyenne entre leur valeur d’entrée et 
+			la valeur équivalente au jour de leur utilisation.
+			</p>
+
+			<table id="endingTable" style="width: 100%">
+				<tbody>
+					<tr>
+						<td>
+							<table class="endingTable1">
+								<thead>
+									<tr>
+										<th></th>
+										<th>
+											Visa de la DRH :
+										</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td></td>
+										<td>
+											{{ cet.avisSupHierarchique ? 'favorable' : 'défavorable' }}
+										</td>
+										<td>{{ cet.commentaireDrh }}</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+
+						<td></td>
+						<td>
+							<table id="secondEndingtable">
+								<tbody>
+									<tr>
+										<td>
+											Date :
+											{{ date(cet.createdAt)|date('d/m/Y') }}
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Signature :
+										</td>
+									</tr>
+									<tr>
+										<td class="tangerine">
+											{{signature}}
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+		<div class="border-page absolute"></div>
+
+	</body>
+</html>

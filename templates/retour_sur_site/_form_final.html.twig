@@ -1,0 +1,94 @@
+{{ form_start(form) }}
+
+    {% block body %}
+
+    
+        
+		<h2>Récapitulatif</h2>
+
+
+			<div class="my-1">
+				<p>Date de fin de télétravail :
+					{{ retour_sur_site.dateFinTeletravail ? retour_sur_site.dateFinTeletravail|date('d/m/Y') : '' }}
+				</p>
+			</div>
+
+			<div class="my-1">
+				{% if retour_sur_site.autonomieInsuffisante %}
+					<p>
+						<strong>Autonomie Insuffisante : Oui</strong>
+					</p>
+				{% else %}
+					<p>Autonomie Insuffisante : Non</p>
+				{% endif %}
+			</div>
+
+			<div class="my-1">
+				{% if retour_sur_site.ProblemesConnexion %}
+					<p>
+						<strong>Problémes de connexion : Oui</strong>
+					</p>
+				{% else %}
+					<p>Problémes de connexion : Non</p>
+				{% endif %}
+			</div>
+
+			<div class="my-1">
+				{% if retour_sur_site.collaborateurInjoignable %}
+					<p>
+						<strong>Collaborateur injoignable : Oui</strong>
+					</p>
+				{% else %}
+					<p>Collaborateur injoignable : Non</p>
+				{% endif %}
+			</div>
+
+			<div class="my-1">
+				{% if retour_sur_site.diminutionProductivite %}
+					<p>
+						<strong>Diminution de la productivité : Oui</strong>
+					</p>
+				{% else %}
+					<p>Diminution de la productivité : Non</p>
+				{% endif %}
+			</div>
+
+			<div class="my-1">
+				{% if retour_sur_site.desorganiseService %}
+					<p>
+						<strong>Désorganise le service : Oui</strong>
+					</p>
+				{% else %}
+					<p>Désorganise le service : Non</p>
+				{% endif %}
+			</div>
+
+			<div class="my-1">
+				{% if retour_sur_site.autres %}
+					<p>
+						<strong>Autres :
+							{{ retour_sur_site.autres }}
+						</strong>
+					</p>
+				{% else %}
+					<p>Autres :
+						{{ retour_sur_site.autres }}</p>
+				{% endif %}
+			</div>
+
+
+			<div class="flex">
+				{{ form_label(form.entretienRh) }}
+				{{ form_widget(form.entretienRh) }}
+			</div>
+			
+
+{% endblock %}
+
+
+
+    <button class="btn validation">{{ button_label|default('Valider') }}</button>
+
+
+
+{{ form_end(form) }}

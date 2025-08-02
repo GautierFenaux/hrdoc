@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block title %}Gestion formulaire télétravail
+{% endblock %}
+{% block body %}
+	<h1>Gestion des formulaires de télétravail</h1>
+	{{ include('./components/message.html.twig')}}
+	{% if teletravail_forms|length > 0 %}
+		<twig:Table id="indexTable" :head="{col: ['Collaborateur', 'Jours télétravaillés', 'Avis du manager', 'Avis DRH', 'Etat', 'Action']}" :entities="teletravail_forms">
+			<twig:block name="table_content">
+				<twig:TableExt:IndexTable :entity="entity" role="manager"/>
+			</twig:block>
+		</twig:Table>
+	{% else %}
+		Vous n'avez aucune demande cours.
+	{% endif %}
+{% endblock %}

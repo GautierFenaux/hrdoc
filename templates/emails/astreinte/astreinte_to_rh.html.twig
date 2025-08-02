@@ -1,0 +1,23 @@
+<p>Bonjour,</p>
+{% if form.state == 'réouvert-rh-postop' or form.state == 'validé-manager-postop' %}
+	{{ form.manager.name }} vient de valider la saisie des temps post opération de 	{{ form.user.name }}
+	{{ form.user.surname }} pour l'opération
+	{{ form.debutAstreinte|date('d/m/Y')}}
+	au
+	{{ form.finAstreinte|date('d/m/Y')}}.<br><br>
+{% else %}
+	{{ form.user.name }}
+	{{ form.user.surname }}
+	vient de valider la demande d'opération faite part
+	{{ form.manager.name }}
+	pour la période
+	{{ form.debutAstreinte|date('d/m/Y')}}
+	au
+	{{ form.finAstreinte|date('d/m/Y')}}.<br><br>
+	Veuillez trouver les motifs justifiant cette demande ci-dessous :
+	<p>
+		{{ form.motif }}
+	</p>
+{% endif %}
+<a>Pour valider la demande rendez-vous sur <a href="{{ target_url }}">Hrdoc</a>
+	<p>Cordialement</p>

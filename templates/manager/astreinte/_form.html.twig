@@ -1,0 +1,30 @@
+{{ form_start(form) }}
+<div class="astreinte-form-wrapper" data-controller="flatpickr">
+	<div class="calendar--wrapper flex">
+		{{ form_label(form.debutAstreinte) }}
+		<div class="calendar-position ml-1">
+			{{ form_widget(form.debutAstreinte) }}
+		</div>
+	</div>
+	<div class="calendar--wrapper flex">
+		{{ form_label(form.finAstreinte) }}
+		<div class="calendar-position ml-1">
+			{{ form_widget(form.finAstreinte) }}
+		</div>
+	</div>
+	<div class="flex align-center">
+		{{ form_label(form.user) }}
+		{{ form_widget(form.user, { 'attr' : {'class':'ml-1 p-1'}}) }}
+	</div>
+	<div class="flex">
+		{{ form_label(form.astreinte) }}
+		{{ form_widget(form.astreinte) }}
+	</div>
+	<div class="flex align-center ml-1">
+		{{ form_label(form.motif) }}
+		{{ form_widget(form.motif, { 'attr' : {'class':'ml-1'}}) }}
+	</div>
+</div>
+<button class="btn validation">{{ button_label|default('Valider') }}</button>
+</div>
+{{ form_end(form) }}

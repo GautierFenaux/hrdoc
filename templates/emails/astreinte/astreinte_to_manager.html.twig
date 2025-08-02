@@ -1,0 +1,21 @@
+Bonjour {{ form.user.manager.name | split(' ') | first }},<br><br>
+
+{% if form.state is same as 'validé-collaborateur-postop' %}
+
+{{ form.user.name }} {{ form.user.surName }} vient de valider ses temps post opération concernant l'astreinte du {{ form.debutAstreinte|date('d/m/Y')}} au {{ form.finAstreinte|date('d/m/Y')}}. <br><br>
+
+<a> Pour voir la demande rendez-vous sur <a href="{{ target_url }}">Hrdoc</a>
+
+{% else %}
+
+{{ form.user.name }} {{ form.user.surName }} vient de refuser la demande d'opération. <br><br>
+
+Veuilez trouver la raison ci-dessous : 
+
+<br><br> - {{ form.MotifRefusCollab }}
+
+{% endif %}
+
+<br>
+<br>
+Cordialement,

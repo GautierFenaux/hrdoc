@@ -1,0 +1,11 @@
+<ul class="access-profil">
+	{% if app.user %}
+		<li>
+				
+			<a href="{{ path('app_profil')}}"><i class="fas fa-user"></i></a>
+			<a href="{{ path('app_logout')}}">
+				<i class="fas fa-sign-out-alt"></i>
+			</a>
+		</li>
+	{% endif %}
+</ul>

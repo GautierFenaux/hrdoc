@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %}Modification formulaire télétravail{% endblock %}
+{% block body %}
+	<h1>Modifier ma demande de télétravail</h1>
+	<twig:FormWrapper:FormWrapper>
+		<twig:block name="form_content">
+			{% if teletravail_form.state.value == 'réouvert' %}
+				{{ include('collaborator/teletravail_form/_form.html.twig') }}
+			{% else %}
+				{{ include('collaborator/teletravail_form/_form_final.html.twig') }}
+			{% endif %}
+		</twig:block>
+	</twig:FormWrapper:FormWrapper>
+{% endblock %}

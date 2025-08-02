@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title %}Modification du formulaire de télétravail
+{% endblock %}
+{% block body %}
+	<h2>Demande télétravail de
+		{{ teletravail_form.user.name }}
+		{{ teletravail_form.user.surName }}
+	</h2>
+	<twig:FormWrapper:FormWrapper>
+		<twig:block name="form_content">
+			{{ include('rh/teletravail_form/_form.html.twig') }}
+		</twig:block>
+	</twig:FormWrapper:FormWrapper>
+{% endblock %}
+{# {% block javascripts %}
+	<script type="module" src="{{ asset('js/form.js') }}"></script>
+	<script type="module" src="{{ asset('js/teletravail_rh.js') }}"></script>
+	<script type="module" src="{{ asset('js/progressBar.js') }}"></script>
+{% endblock %} #}

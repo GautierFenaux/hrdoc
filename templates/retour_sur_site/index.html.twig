@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Retour sur site index
+{% endblock %}
+
+{% block body %}
+
+	<h1>Gestion des retours sur site</h1>
+
+	{{ include('./components/message.html.twig')}}
+
+	{% if retours_sur_site|length > 0 %}
+		<table id="indexTable" class="cell-border compact stripe">
+
+			<thead>
+				<tr>
+					<th>Manager</th>
+					<th>Collaborateur</th>
+					<th>Fait le</th>
+					<th>Date de fin du télétravail</th>
+					<th>Motif</th>
+					<th>Etat</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for retour_sur_site in retours_sur_site %}
+					<tr data-id={{ retour_sur_site.id }}>
+						<td>{{ retour_sur_site.manager.name }}</td>
+						<td>{{ retour_sur_site.user.name }}
+							{{ retour_sur_site.user.surName }}</td>
+						<td>{{ retour_sur_site.createdAt|date('d-m-Y') }}</td>
+						<td>{{ retour_sur_site.dateFinTeletravail ? retour_sur_site.dateFinTeletravail|date('d-m-Y') }}</td>
+						<td>
+							{% if retour_sur_site.autonomieInsuffisante == true %}
+								Autonomie insuffisante :
+								<i class="fa fa-check" aria-hidden="true"></i><br>
+							{% endif %}
+							{% if retour_sur_site.ProblemesConnexion == true %}
+								Problèmes de connexion :
+								<i class="fa fa-check" aria-hidden="true"></i><br>
+							{% endif %}
+							{% if retour_sur_site.collaborateurInjoignable == true %}
+								collaborateur injoignable :
+								<i class="fa fa-check" aria-hidden="true"></i><br>
+							{% endif %}
+							{% if retour_sur_site.diminutionProductivite == true %}
+								diminution productivité :
+								<i class="fa fa-check" aria-hidden="true"></i><br>
+							{% endif %}
+							{% if retour_sur_site.desorganiseService == true %}
+								désorganise le service :
+								<i class="fa fa-check" aria-hidden="true"></i><br>
+							{% endif %}
+							{{ retour_sur_site.autres }}
+						</td>
+						<td class="state">{{ retour_sur_site.state }}</td>
+						<td class="index-buttons" id="index-buttons-rss">
+							{% if (retour_sur_site.state == 'attente-rh') %}
+								<a class="signature-button btn-table-form ajax-manual-signature" data-id="{{retour_sur_site.id}}">
+									<i class="fas fa-file-signature "></i>
+								</a>
+								<a class="refuse btn-table-form xmark-fj" data-id="{{retour_sur_site.id}}">
+									<i class="fa-solid fa-xmark"></i>
+								</a>
+							{% else %}
+								<a class="btn-table-form btn-disabled">
+									<i class="fas fa-file-signature "></i>
+								</a>
+								<a class="btn-table-form btn-disabled">
+									<i class="fa-solid fa-xmark"></i>
+								</a>
+							{% endif %}
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</tbody>
+	</table>
+{% else %}
+	<p>Vous n'avez aucune demande en cours.</p>
+{% endif %}{% endblock %}

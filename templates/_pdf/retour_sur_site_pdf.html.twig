@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet"/>
+
+		<style>
+			* {
+				margin: 0
+			}
+			body {
+				font-family: 'Arimo';
+				font-size: 12px
+			}
+
+			.wrapper {
+				padding: 50px;
+				color: #1f2b51
+			}
+
+			.margin_bottom {
+				margin-bottom: 25px;
+			}
+
+			.margin_tb {
+				margin: 25px 0;
+			}
+
+			.padding {
+				padding: 5px
+			}
+
+			.background_color_title {
+				background-color: #00b2b9;
+				color: white;
+			}
+
+			h1 {
+				text-align: center;
+				margin: 15px 0;
+			}
+
+			td {
+				vertical-align: top;
+			}
+
+			.background-color-table {
+				background-color: #f1f9f5
+			}
+
+			.table_versement {
+				width: 100%;
+			}
+
+			.table_versement thead tr th {
+				padding: 10px;
+			}
+
+			.text-align-center {
+				text-align: center;
+			}
+
+			.table_versement tbody tr td {
+				border-bottom: 4px solid #f1f9f5;
+				border-right: 4px solid #f1f9f5;
+				text-align: center;
+				padding: 10px;
+			}
+
+			.table_versement tbody tr td:first-child {
+				border-left: 4px solid #f1f9f5;
+			}
+
+			h5 {
+				background-color: #02a0a5;
+				padding: 10px;
+				margin-bottom: 5px;
+				color: white;
+			}
+			p {
+				padding: 15px 15px 30px 10px
+			}
+
+			.border-page {
+				height: 10px;
+				width: 100%;
+				background-color: #9ED5C0;
+			}
+
+			.explication-table > tbody > tr > td:first-child,
+			#endingTable > tbody > tr > td:first-child {
+				border: 5px solid #f1f9f5;
+				padding: 15px;
+			}
+
+			#secondEndingtable {
+				border: 5px solid #f1f9f5;
+				padding: 15px;
+			}
+
+			.absolute {
+				position: absolute;
+				bottom: 0
+			}
+
+			.title-color {
+				color: #02a0a5;
+				font-weight: 600;
+				width: 140px;
+			}
+
+			.padding-table {
+				padding: 15px;
+			}
+
+			#summaryTable thead tr th,
+			#summaryTable tbody tr td {
+				border-left: 5px solid #f1f9f5;
+				border-bottom: 5px solid #f1f9f5;
+			}
+
+			#summaryTable thead tr th:first-child {
+				text-align: left;
+			}
+
+
+			#summaryTable thead tr th:last-child,
+			#summaryTable tbody tr td:last-child {
+				border-right: 5px solid #f1f9f5;
+			}
+
+			.explication-table {
+				margin: 20px 0;
+			}
+
+			#summaryTable {
+				margin-bottom: 40px;
+				padding-top: 40px;
+				width: 100%;
+			}
+
+			.last-paragraph {
+				margin-bottom: 40px;
+			}
+
+			.tangerine {
+				font-family: "Tangerine", cursive;
+				font-weight: 400;
+				font-style: normal;
+				font-size: 25px;
+			}
+
+			.mb-1 {
+				margin-bottom: 1rem;
+			}
+
+			.float-right {
+				float: right;
+			}
+
+			.mt-1 {
+				margin-top: 1rem;
+			}
+
+			.mt-2 {
+				margin-top: 2rem;
+			}
+
+			.mt-10 {
+				margin-top: 100px;
+			}
+
+			.mb-2 {
+				margin-bottom: 2rem;
+			}
+
+			.mb-4 {
+				margin-bottom: 4rem;
+			}
+
+
+			{# .mt-4 {
+				margin-top: 6rem;
+			} #}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="border-page"></div>
+		<div class="wrapper">
+			<div style="width: 100%">
+				<img src="{{ logo }}" alt="" style="width:200px ; height:95px"/>
+			</div>
+
+			<h2 class="text-align-center mb-2 mt-2">FORMULAIRE DE DEMANDE DE RETOUR A UNE SITUATION SANS TELETRAVAIL<br>
+				ANNEXE 4 (à la demande du manager)</h2>
+
+			<table class="margin_bottom" style="width:100%; background-color: #f1f9f5; padding: 15px">
+				<tbody>
+					<tr>
+						<td class="padding">Direction :
+							{{ rss.user.departement }}</td>
+					</tr>
+					<tr>
+						<td class="padding">Nom :
+							{{ rss.user.surName }}</td>
+						<td class="padding">Prénom :
+							{{ rss.user.name }}</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h5>DISPOSITION GENERALE</h5>
+
+
+			<p>
+				Le supérieur hiérarchique pourra, sous réserve de respecter un délai de prévenance de 15 jours,
+				décider de mettre fin au télétravail d’un salarié, si les conditions d’éligibilité ne sont plus remplies, en 
+				motivant sa décision via le présent formulaire.<br><br>
+				En cas de désaccord entre les parties, un entretien avec la Direction des Ressources Humaines devra 
+				être organisé.<br><br>
+				De manière générale, si les conditions d’éligibilité du télétravail définies à l’article 2 de l’accord en 
+				vigueur ne sont plus réunies, le télétravail s’arrête de plein droit. Le supérieur hiérarchique devra 
+				informer immédiatement la Direction des Ressources Humaines via le présent formulaire.
+				Dans le cas où le supérieur hiérarchique ou l’employeur mettrait fin au télétravail, le salarié aura la 
+				possibilité de formuler une nouvelle demande dans un délai de 6 mois.<br><br>
+			</p>
+
+			<h5>DEMANDE DE RETOUR A UNE SITUATION SANS TELETRAVAIL FORMULEE PAR LE MANAGER</h5>
+			<p>
+				Date du passage en télétravail régulier : {{ teletravail_start_date|date('d/m/Y') }}<br/><br/>
+
+				Je soussigné,
+				{{ rss.manager.name }}, souhaite 
+				mettre fin au télétravail régulier du salarié cité ci-dessus à compter du
+				{{ rss.dateFinTeletravail|date('d/m/Y') }}, et 
+				déclare respecter le délai de prévenance de 15 jours.<br><br>
+				Cette demande est motivée par un ou plusieurs des motifs suivants :
+			</p>
+
+			<ul class="mb-4">
+				{% if rss.desorganiseService is same as true %}
+					<li>Désorganise le service</li>
+				{% endif %}
+
+				{% if rss.autonomieInsuffisante is same as true %}
+					<li>Autonomie insuffisante</li>
+				{% endif %}
+
+				{% if rss.problemesConnexion is same as true %}
+					<li>Problémes de connexion</li>
+				{% endif %}
+
+				{% if rss.collaborateurInjoignable is same as true %}
+					<li>Collaborateur injoignable</li>
+				{% endif %}
+
+				{% if rss.diminutionProductivite is same as true %}
+					<li>Diminution de la productivité</li>
+				{% endif %}
+
+				{% if rss.autres is not null %}
+					<li>{{ rss.autres }}</li>
+				{% endif %}
+			</ul>
+
+			<div class="mb-4 mt-10">
+
+				<table id="endingTable" style="width: 100%">
+					<tbody>
+						<tr>
+							<td>
+								<table class="endingTable1">
+									<thead>
+										<tr>
+											<th></th>
+											<th>
+												Visa et signature du responsable hiérarchique : favorable
+											</th>
+										</tr>
+									</thead>
+
+									<tbody>
+										<tr>
+											<td></td>
+											<td>
+												{{ date(rss.createdAt)|date('d/m/Y')}}
+											</td>
+											<td class="tangerine float-right">
+												{{ rss.manager.name }}
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<h5 class="mt-2 mb-2">VALIDATION DIRECTION DES RESSOURCES HUMAINES</h5>
+
+			<table id="endingTable" style="width: 100%">
+				<tbody>
+					<tr>
+						<td>
+							<table class="endingTable1">
+								<thead>
+									<tr>
+										<th></th>
+										<th>
+											Date et Visa de la DRH :
+											{% if rss.state is same as 'validé-rh' %}
+												favorable
+											{% else %}
+												défavorable
+											{% endif %}
+										</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td></td>
+										<td>
+											{{ date(rss.dateSignatureRh)|date('d/m/Y')}}
+										</td>
+										<td class="tangerine float-right">{{signature_rh}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h5 class="mt-2 mb-2">RETOUR COLLABORATEUR</h5>
+
+			<table id="endingTable" style="width: 100%">
+				<tbody>
+					<tr>
+						<td>
+							<table class="endingTable1">
+								<thead>
+									<tr>
+										<th></th>
+										<th>
+											Retour collaborateur :
+											{{ date('now')|date('d/m/Y')}}
+										</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td></td>
+										<td>
+											Entretien avec la DRH :
+											{{ rss.entretienRh is same as true ? 'Oui': 'Non' }}
+										</td>
+										<td class="tangerine float-right">
+											{{ rss.user.name }}
+											{{ rss.user.surName|lower|capitalize }}
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+
+					</tr>
+				</tbody>
+			</table>
+
+
+		</div>
+
+		<div class="border-page absolute"></div>
+
+	</body>
+</html>

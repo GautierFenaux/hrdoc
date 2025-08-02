@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta
+		http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+		<title>
+			{% block title %}Bienvenue !{% endblock %}
+		</title>
+		{% block importmap %}
+			{{ importmap('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		<div class="container">
+			{{ include('./components/sidenav.html.twig') }}
+			<div class="content-wrapper"> {% block body %}{% endblock %}</div>
+		</div>
+	</body>
+</html>
+
+

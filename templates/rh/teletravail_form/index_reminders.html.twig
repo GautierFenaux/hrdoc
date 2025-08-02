@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+{% block title %}Relance télétravail{% endblock %}
+{% block body %}
+	<h1>Gestion des relances de demande de télétravail
+		{{date('now')|date('Y')}}</h1>
+	<button class="btn btn-table-export">
+		<a href="{{ path('app_export_formulaire', {'type' : 'teletravail-reminder'}) }}">Exporter</a>
+	</button>
+	{% if empty_teletravails|length > 0 %}
+		<table id="indexTable" class="cell-border compact stripe forfait-jour-table" data-controller="table" >
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Statut</th>
+					<th>Date de dernière relance</th>
+					<th class="reminder-title">Relance</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% if empty_teletravails|length > 0 %}
+					{% for key, empty_teletravail in empty_teletravails %}
+						<tr id="{{ key | split('-') | first }}">
+							<td>
+								{{ key | split('-') | last }}
+							</td>
+							<td>
+								non-complété
+							</td>
+							<td>
+								{% if (empty_teletravail[1]) is null %}
+									non-relancé
+								{% else %}
+									{{ date(empty_teletravail[1])|date('d/m/Y') }}
+								{% endif %}
+							</td>
+							<td class="reminder-bell">
+								<twig:Link :entity="empty_teletravail" action="reminder" dataRequestType="relaunch" typeOfEntity="teletravail_form" :params="{id: [key], status: ['non-complété']}" dataAction="click->table#comfirm" />
+							</td>
+						</tr>
+					{% endfor %}
+				{% endif %}
+				{% if existing_teletravails|length > 0 %}
+					{% for key, existing_teletravail in existing_teletravails %}
+						{% if existing_teletravail|length > 0 %}
+							<tr id="{{ key | split('-') | first }}">
+								<td>
+									{{ key | split('-') | last }}
+								</td>
+								<td>
+									{{ existing_teletravail[0] }}
+								</td>
+								<td>
+									{% if (existing_teletravail[0] is same as 'attente-manager')  %}
+										{% if (existing_teletravail[1]) is null %}
+											non relancé
+										{% else %}
+											Manager relancé le :
+											{{ date(existing_teletravail[1])|date('d/m/Y') }}
+										{% endif %}
+									{% else %}
+									{# else == elseif (existing_teletravail[0] is same as 'validé-rh') #}
+										{% if (existing_teletravail[1]) is null %}
+											non relancé
+										{% else %}
+											{{ date(existing_teletravail[1])|date('d/m/Y') }}
+										{% endif %}
+									{% endif %}
+								</td>
+								<td class="reminder-bell">
+									<twig:Link :entity="existing_teletravail" action="reminder" dataRequestType="relaunch" typeOfEntity="teletravail_form" 
+									:params="{id: [key], status: [existing_teletravail[0]]}" dataAction="click->table#comfirm"/>
+								</td>
+							</tr>
+						</td>
+					</tr>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+	</tbody>
+</table>
+{% else %}
+	<p>Vous n'avez aucune relance à effectuer.</p>
+{% endif %}
+{% endblock %}

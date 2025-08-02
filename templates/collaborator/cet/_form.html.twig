@@ -1,0 +1,39 @@
+{{ form_start(form, {'attr' : {'data-controller':'cet'}}) }}
+<div class="form-part-wrapper">
+	<h3 class="cet-title">Indiquez le type de demande que vous souhaitez effectuer :</h3>
+
+	<div class="first-part-form__a">
+		<div>
+			<strong>{{ form_label(form.alimentation)}}</strong>
+			{{ form_widget(form.alimentation, {'attr':{ 'data-action':'click->cet#triggerStep', 'data-cet-target':'alimentation_input input'}})}}
+		</div>
+		<div data-action="click->cet#triggerStep">
+			<strong>{{ form_label(form.restitution)}}</strong>
+			{{ form_widget(form.restitution, {'attr':{ 'data-action':'click->cet#triggerStep', 'data-cet-target':'restitution_input input'}})}}
+		</div>
+		<div data-action="click->cet#triggerStep">
+			<strong>{{ form_label(form.utilisation)}}</strong>
+			{{ form_widget(form.utilisation, {'attr':{ 'data-action':'click->cet#triggerStep','data-cet-target':'utilisation_input input'}})}}
+		</div>
+	</div>
+	<div class="form-step display-step" id="alimentation" data-cet-target="alimentation step">
+		{{ form_row(form.droitCongesCumule) }}
+		{{ form_row(form.nbJoursCongesUtilises) }}
+		{{ form_row(form.soldeJoursCongesNonPris)}}
+		{{ form_row(form.nbJoursVersement)}}
+		<button class="btn btn-cet validation ">{{ button_label|default('Signer') }}</button>
+	</div>
+	<div class="form-step display-step" id="restitution" data-cet-target="restitution step">
+		<p>Liquidation en monétaire des jours de congés annuels au-delà de la 5e semaine</p>
+		{{ form_row(form.nbJoursLiquide) }}
+		<button class="btn btn-cet validation ">{{ button_label|default('Signer') }}</button>
+	</div>
+	<div class="form-step display-step" id="utilisation" data-cet-target="utilisation step">
+		{{ form_row(form.nbJours) }}
+		{{ form_row(form.nbJoursADebiter) }}
+		{{ form_row(form.priseCetDebut) }}
+		{{ form_row(form.priseCetFin)  }}
+		<button class="btn btn-cet validation">{{ button_label|default('Signer') }}</button>
+	</div>
+</div>
+{{ form_end(form) }}

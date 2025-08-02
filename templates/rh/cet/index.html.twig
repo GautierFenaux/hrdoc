@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des CET
+{% endblock %}
+
+{% block body %}
+		<h1>Gestion des demandes de CET</h1>
+		<div id="wrapper-tab-panel">
+			<input class="radio" id="one" name="group" type="radio" checked>
+			<input class="radio" id="two" name="group" type="radio">
+			<input class="radio" id="three" name="group" type="radio">
+			<div class="tabs">
+				<label class="tab" id="one-tab" for="one">
+					Alimentation
+					{% if pending_cets_alimentation > 0 %}
+						<span class="notification-bubble">{{ pending_cets_alimentation }}</span>
+					{% endif %}
+				</label>
+				<label class="tab" id="two-tab" for="two">
+					Utilisation
+					{% if pending_cets_utilisation > 0 %}
+						<span class="notification-bubble">{{ pending_cets_utilisation }}</span>
+					{% endif %}
+				</label>
+				<label class="tab" id="three-tab" for="three">
+					Restitution
+					{% if pending_cets_restitution > 0 %}
+						<span class="notification-bubble">{{ pending_cets_restitution }}</span>
+					{% endif %}
+				</label>
+			</div>
+			<div class="panels" id="cet-panels">
+				<div class="panel" id="one-panel">
+					<div>
+						{% if cets_alimentation| length > 0 %}
+							<twig:Table id="indexTableAlimentation" :head="{col: ['Collaborateur', 'Congé cumulé en jours', 'Jour de congés utilisés', 'Solde de jours de congés non pris', 'Nombre de jours versés', 'Etat', 'Action']}" :entities="cets_alimentation">
+								<twig:block name="table_content">
+									<twig:TableExt:IndexTable :entity="entity" role="rh"/>
+								</twig:block>
+							</twig:Table>
+						{% else %}
+							Vous n'avez aucune demande en cours.
+						{% endif %}
+					</div>
+				</div>
+				<div class="panel" id="two-panel">
+					<div>
+						{% if cets_utilisation| length > 0 %}
+							<twig:Table id="indexTableUtilisation" :head="{col: ['Collaborateur', 'Nb de jours dans CET', 'Nb de jours à débiter', 'Solde', 'Date de début', 'Date de fin', 'Etat', 'Action']}" :entities="cets_utilisation">
+								<twig:block name="table_content">
+									<twig:TableExt:IndexTable :entity="entity" role="rh"/>
+								</twig:block>
+							</twig:Table>
+						{% else %}
+							Vous n'avez aucune demande en cours.
+						{% endif %}
+					</div>
+				</div>
+				<div class="panel" id="three-panel">
+					<div>
+						{% if cets_restitution | length > 0 %}
+							<twig:Table id="indexTableRestitution" :head="{col: ['Collaborateur', 'Nb jours liquidés', 'Commentaire manager', 'Etat', 'Action']}" :entities="cets_restitution">
+								<twig:block name="table_content">
+									<twig:TableExt:IndexTable :entity="entity" role="rh"/>
+								</twig:block>
+							</twig:Table>
+						{% else %}
+							Vous n'avez aucune demande en cours.
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+{% endblock %}

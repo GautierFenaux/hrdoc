@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block title %}Gestion des demandes d'opérations{% endblock %}
+{% block body %}
+		<h1>Gestion des demandes d'opérations</h1>
+		{{ include('./components/message.html.twig')}}
+		<twig:Table id="indexTable" :head="{col: ['Collaborateur', 'Fait le', 'Motif', 'Type opération', 'Temps intervention jour', 'Temps intervention nuit', 'Temps valorisé', 'Etat', 'Action']}" :entities="astreintes">
+			<twig:block name="table_content">
+				<twig:TableExt:IndexTable :entity="entity" role="manager"/>
+			</twig:block>
+		</twig:Table>
+{% endblock %}

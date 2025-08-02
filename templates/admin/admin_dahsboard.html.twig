@@ -1,0 +1,7 @@
+{# In your custom template file #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{# Override the label for the User entity #}
+{% block easyadmin_page_title %}
+    {{ block('parent')|default('Collaborateur') }}
+{% endblock %}

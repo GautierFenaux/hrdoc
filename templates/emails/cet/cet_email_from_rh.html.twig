@@ -1,0 +1,64 @@
+{% if form.state.value == 'validé-rh' %}
+	<p>
+		Bonjour
+		{{ form.user.name }},<br><br>Votre demande de compte épargne-temps vient d'être validée
+	</p>
+
+Vous pouvez directement télécharger le document en pièce-jointe ou le retrouver sur votre espace
+<a href="{{ target_url }}">Hrdoc</a>.
+
+<p/>
+{% endif %}
+
+{% if form.state.value == 'refus-rh'%}
+<p>
+	Bonjour
+	{{ form.user.name }}
+	,<br><br>
+	Votre demande de compte épargne-temps a été refusée.
+	<br>
+	Pour en connaître la raison veuillez vous référez au commentaire ci-dessous :
+	<br><br>
+	<strong>{{ form.commentaireDRH }}
+	</strong>
+	<br><br>
+	Vous pouvez directement télécharger le document en pièce-jointe ou le retrouver sur votre espace
+	<a href="{{ target_url }}">Hrdoc</a>.
+</p>
+{% endif %}
+
+{% if form.state.value  == 'refus-manager' %}
+
+<p>
+
+	Bonjour
+	{{ form.user.name }},<br><br>
+	Votre demande de compte épargne-temps a été refusée par votre manager.
+	<br>
+	Pour en connaître la raison veuillez vous référez au commentaire ci-dessous :
+	<br><br>
+	<strong>{{ form.commentaireSupHierarchique }}
+	</strong>
+	<br><br>
+
+</p>{% endif %}
+{% if form.state.value  == 'réouvert' %}
+<p>
+
+	Bonjour
+	{{ form.user.name }},<br><br>
+	Votre demande sur votre compte épargne-temps a été réouverte.
+	<br><br>
+	Afin de faire les modifications nécessaires, veuillez vous référez au commentaire ci-dessous :
+	<br><br>
+
+	<strong>{{ form.commentaireDRH }}
+	</strong>
+
+	<br><br>
+
+	Afin de modifier votre demande rendez-vous sur votre espace :
+	<a href="{{ target_url }}">Hrdoc</a>.
+</p>
+{% endif %}
+Cordialement

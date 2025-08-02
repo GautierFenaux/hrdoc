@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+		<style>
+
+			* {
+				margin: 0
+			}
+			body {
+				font-family: 'Arimo';
+				font-size: 12px
+			}
+
+			.wrapper {
+				padding: 50px;
+				color: #1f2b51
+			}
+
+			.margin_bottom {
+				margin-bottom: 25px;
+			}
+
+			.margin_tb {
+				margin: 25px 0;
+			}
+
+			.padding {
+				padding: 5px
+			}
+
+			.background_color_title {
+				background-color: #00b2b9;
+				color: white;
+			}
+
+			h1 {
+				text-align: center;
+				margin: 15px 0;
+			}
+
+			td {
+				vertical-align: top;
+			}
+
+			.background-color-table {
+				background-color: #f1f9f5
+			}
+
+			h4 {
+				background-color: #02a0a5;
+				padding: 10px;
+				margin-bottom: 5px;
+				color: white;
+			}
+			p {
+				padding: 10px;
+			}
+
+			.border-page {
+				height: 10px;
+				width: 100%;
+				background-color: #9ED5C0;
+			}
+			#endingTable {
+				margin-top: 40px;
+			}
+			.explication-table > tbody > tr > td:first-child,
+			#endingTable > tbody > tr > td:first-child {
+				border: 5px solid #f1f9f5;
+				padding: 15px;
+			}
+
+			#secondEndingtable {
+				border: 5px solid #f1f9f5;
+				padding: 15px;
+			}
+
+			.absolute {
+				position: absolute;
+				bottom: 0
+			}
+
+			.title-color {
+				color: #02a0a5;
+				font-weight: 600;
+			}
+
+			.padding-table {
+				padding: 15px;
+			}
+
+			#summaryTable thead tr th,
+			#summaryTable tbody tr td {
+				border-left: 5px solid #f1f9f5;
+				border-bottom: 5px solid #f1f9f5;
+			}
+
+			#summaryTable thead tr th:first-child {
+				text-align: left;
+			}
+
+
+			#summaryTable thead tr th:last-child,
+			#summaryTable tbody tr td:last-child {
+				border-right: 5px solid #f1f9f5;
+			}
+
+			#summaryTable tbody tr td {
+				text-align: center;
+			 }
+
+			#summaryTable {
+				margin-bottom: 35px;
+			}
+			#summaryTable {
+				margin: 15px 0;
+			}
+
+			.padding-page-two {
+				padding-top:50px ;
+			}
+
+			.margin-top {
+				margin-top: 20px;
+			}
+			
+			.tangerine {
+				font-family: "Tangerine", cursive;
+				font-weight: 400;
+				font-style: normal;
+				font-size: 30px;
+			}
+
+		</style>
+	</head>
+
+	<body>
+
+		<div class="border-page"></div>
+		<div class="wrapper">
+
+			<div style="width: 100%">
+				<img src="{{ logo }}" alt="" style="width:200px ; height:95px"/>
+			</div>
+
+			<h1>Demande d'utilisation
+				<br>
+				d'un compte épargne-temps</h1>
+
+			<table class="margin_bottom" style="width:100%; background-color: #f1f9f5; padding: 15px">
+				<tbody>
+					<tr>
+						<td class="padding">Direction :
+							{{ cet.user.departement }}</td>
+					</tr>
+					<tr>
+						<td class="padding">Nom :
+							{{ cet.user.surName }}</td>
+						<td class="padding">Prénom :
+							{{ cet.user.name }}</td>
+					</tr>
+					<tr>
+						<td class="padding">Fonction exercées :
+							{{ cet.user.metier }}</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h4>Modalités d'utilisation</h4>
+
+			<p>
+				<strong>L’objectif du CET est de permettre de compenser la perte de salaire liée à la prise d’un congé non rémunéré par 
+					le salarié. Le CET ne peut être utilisé que pour indemniser les congés définis ci-après</strong>
+			</p>
+			<p class="title-color" >a) Congés de fin de carrière</p>
+			<p>La demande de paiement doit être faite au plus tard avant la fin de chaque semestre.</p>
+
+
+			<p class="title-color" >b) Congés pour convenance personnelle</p>
+			<p>Les droits affectés au CET peuvent être utilisés en cours de carrière pour indemniser des congés pour convenance 
+				personnelle d’au moins vingt (20) jours ouvrés, cette durée minimale pouvant être réduite jusqu’à dix (10) jours avec 
+				l’accord exprès de l’employeur.
+				Le salarié doit déposer une demande écrite de congé trois (3) mois avant la date de départ envisagée. L’employeur est 
+				tenu de répondre par écrit, dans le délai d’un (1) mois suivant la réception de la demande :<br><br>
+				- soit qu’il accepte ou refuse la demande en précisant dans le second cas pourquoi ;<br><br>
+				- soit qu’il la diffère de six (6) mois au plus
+			</p>
+			
+			<p class="title-color" >c) Congés légaux </p>
+			<p>Les droits affectés au CET peuvent enfin être utilisés en cours de carrière pour indemniser les congés suivants : <br><br>
+				- congé parental d’éducation prévu par les articles L.1225-47 et suivants du Code du travail ;<br><br>
+				- congé sabbatique prévu par les articles L.3142-28 et suivants du Code du travail ;<br><br>
+				- congé pour création, cessation progressive, ou reprise d’entreprise prévu par les articles L.3142-105 et 
+				- suivants du Code du travail et L351-15 du Code de la Sécurité sociale;<br><br>
+				- congé de solidarité internationale prévu par l’article L.3142-67 du Code du travail ;<br><br>
+				- congé de solidarité familiale prévu à l’article L.3142-6 du Code du travail ;<br><br>
+				<span style="display: block; height: 65px"></span>
+				- congé de proche aidant prévu à l’article L.3142-16 du Code du travail ;<br><br>
+				- congé de présence parentale prévu à l’article L.1225-62 du Code du travail ;<br><br>
+				- congé parental : possibilité de débloquer la totalité des jours de son CET en vue d’indemniser son congé 
+				parental. Le salarié devra transmettre sa demande par courrier à la Direction des Ressources Humaines un 
+				mois avant la date de déblocage souhaitée qui analysera la demande comme précisé au sein de l’accord QVT 
+				Mgéfi signé le 19/12/2019 ;<br><br>
+				- Absence enfant malade : possibilité de débloquer 3 jours maximum par an et par enfant de moins de 14 ans, si 
+				le salarié a utilisé l’intégralité de son droit « jours enfant malade », sous réserve de présentation d’un certificat 
+				médical. Le salarié devra transmettre sa demande par mail à la Direction des Ressources Humaines le jour 
+				même, qui analysera la demande comme précisé au sein de l’accord QVT Mgéfi signé le 19/12/2019.<br><br>
+				Ces congés sont pris dans les conditions et selon les modalités prévues par la loi ou au sein de l’accord SVT, diversité et 
+				égalité professionnelle entre les hommes et les femmes Mgéfi signé le 19/12/2019.<br><br>
+				L’utilisation du CET sous forme de congé est à l’initiative du salarié, à tout moment de l’année, dans le respect d’un délai 
+				de prévenance raisonnable.
+			</p>
+
+			<p class="title-color" >d) Passage à temps partiel</p>
+			<p> Dans les conditions prévues par la loi, lorsque le salarié choisit de passer à temps partiel, le compte épargne temps peut 
+				être utilisé pour indemniser :<br><br>
+				- une partie, à préciser par le salarié, des heures non travaillées, dans les conditions à préciser par le salarié en 
+				accord avec son supérieur; ou <br><br>
+				- la totalité des heures non travaillées, dans les conditions suivantes à préciser
+			</p>
+			
+			<h4 class="margin-top">Détail de la demande d'utilisation</h4>
+			<table cellspacing="0" id="summaryTable">
+				<thead>
+					<tr class="background-color-table">
+						<th class="padding-table">Nombre de jours dans le CET à la date de la demande</th>
+						<th class="padding-table">Nombre de jours de congé demandés, à débiter du CET</th>
+						<th class="padding-table">Solde du CET</th>
+						<th class="padding-table">Date de prise des jours de CET</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="padding-table">{{cet.nbJours}}</td>
+						<td class="padding-table">{{cet.nbJoursAdebiter}}</td>
+						<td class="padding-table">{{cet.solde}}</td>
+						<td class="padding-table">Du {{date(cet.priseCetDebut)|date('d/m/Y') }} au {{date(cet.priseCetFin)|date('d/m/Y')}} inclus</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table id="endingTable" style="width: 100%">
+				<tbody>
+					<tr>
+						<td>
+							<table class="endingTable1">
+								<thead>
+									<tr>
+										<th>
+											Visa du responsable hiérarchique :
+										</th>
+										<th></th>
+										<th>
+											Visa de la DRH :
+										</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td>
+											{{ cet.avisSupHierarchique ? 'favorable' : 'défavorable' }}<br>
+											{{ cet.commentaireSupHierarchique }}
+										</td>
+										<td></td>
+										<td>
+											{{ cet.avisDrh ? 'favorable' : 'défavorable' }}<br>
+											{{ cet.commentaireDrh }}
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+
+						<td></td>
+						<td>
+							<table id="secondEndingtable">
+								<tbody>
+									<tr>
+										<td>
+											Date :
+											{{ date(cet.createdAt)|date('d/m/Y') }}
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Signature :
+										</td>
+									</tr>
+									<tr>
+										<td class='tangerine'>
+											{{ signature }}
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+		<div class="border-page absolute"></div>
+
+	</body>
+</html>

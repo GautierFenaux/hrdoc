@@ -1,0 +1,64 @@
+{{ form_start(form, {'attr': {'data-teleworking-target':'form'}}) }}
+
+<div class="form-part-wrapper">
+	<h3>Conditions d'éligibilité : nature du contrat, activité et autonomie</h3>
+	<div class="first-part-form">
+		<div class="first-part-form__a">
+			{{ form_row(form.natureContrat) }}
+			{{ form_row(form.quotite, { 'attr': {'data-action': 'change->teleworking#changeValue'} }) }}
+			Fonction exercée :
+			{{ app.user.metier }}
+		</div>
+		<div data-teleworking-target="quotiteUnused">
+			{{ form_row(form.quotitePersonnel, {'attr': {'style':'display: none'}}) }}
+		</div>
+
+		<div class="quotite-personnel" data-teleworking-target="quotite">
+			<label>
+				Votre quotité est-elle supérieure ou égale à 80% ?</label>
+			{% for label, value in field_choices(form.quotitePersonnel) %}
+				<input id="teletravail_form_quotitePersonnel_{{loop.index0}}" type="radio" name="teletravail_form[quotitePersonnel]" value="{{ value }}" placeholder="teletravail_form_quotitePersonnel_placeholder_{{loop.index0}}" {% if loop.index0 is same as 1 %} data-teleworking-target="partialTime" data-action="click->teleworking#resetInputs" {% endif %}>
+				<label for="teletravail_form_quotitePersonnel_{{loop.index0}}">{{label}}</label>
+			{% endfor %}
+		</div>
+	</div>
+	<div class="second-part-form">
+		<h3>Conditions techniques, matérielles et administratives pour accéder au télétravail</h3>
+		{{ form_row(form.connexionInternet) }}
+		{{ form_row(form.attestationAssurance)}}
+		<div>
+			{{ form_widget(form.attestationHonneur) }}
+			{{ form_label(form.attestationHonneur) }}
+		</div>
+	</div>
+	<div class="third-part-form">
+		<h3>Detail de la demande</h3>
+		{{ form_row(form.lieuTeletravail)}}
+		{% for label, messages in app.flashes %}
+			{% for message in messages %}
+				<div class="alert alert-{{ label }}">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endfor %}
+		<div class="calendar--wrapper" data-controller="flatpickr">
+			{{ form_label(form.aCompterDu) }}
+			<div class="calendar-position">
+				{{ form_widget(form.aCompterDu) }}
+			</div>
+		</div>
+		<div>
+			<label>Choix des journées télétravaillées :
+			</label>
+			{% for label, value in field_choices(form.journeesTeletravaillees) %}
+				<label for="teletravail_form_journeesTeletravaillees_{{loop.index0}}">{{label}}</label>
+				<input id="teletravail_form_journeesTeletravaillees_{{loop.index0}}" type="checkbox" name="teletravail_form[journeesTeletravaillees][]" value="{{ value }}" data-teleworking-target="teleworkingDay" data-action='click->teleworking#addDay'>
+			{% endfor %}
+		</div>
+
+		{{ form_row(form.journeesTeletravaillees, {'attr':{'style': 'display: none', 'data-teleworking-target':'journeesTeletravailleesUnused'}}) }}
+	</div>
+
+	<button class="btn validation" data-action='teleworking#submitForm'>{{ button_label|default('Valider') }}</button>
+
+	{{ form_end(form) }}

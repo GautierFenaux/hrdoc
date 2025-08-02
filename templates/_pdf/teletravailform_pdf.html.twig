@@ -1,0 +1,233 @@
+<head>
+	<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
+	<style>
+
+		.tangerine {
+			font-family: "Tangerine", cursive;
+			font-weight: 400;
+			font-style: normal;
+			font-size: 30px;
+		}
+	</style>
+</head>
+
+<body style="margin: 0 55px; font-family: Arial, sans-serif; font-size: 12px">
+
+	<div class="framed-title" style="border: 2px solid black">
+		<h1 style="text-align: center">Formulaire de demande de passage en télétravail régulier annexe 2</h1>
+	</div>
+
+	<div style="margin : 10px 0;">
+		<li style="list-style-type: none ; margin : 10px 0">Direction / Service :
+			{{ user.departement }}
+		</li>
+		<li style="list-style-type: none ; margin : 10px 0">Nom :
+			{{ user.name }}
+		</li>
+		<li style="list-style-type: none ; margin : 10px 0">Prenom:
+			{{ user.surName }}
+		</li>
+	</div>
+
+
+	<div class="pdf-content">
+
+		<h2>DISPOSITION GENERALE</h2>
+
+		<p style="text-align: justify;">L'accord collectif s'applique à l'ensemble du personnel de la hrdoc sous contrat à
+			<strong>durée indéterminée</strong>
+			ou sous contrat
+			<strong>durée déterminée d'une durée supérieure à 6 mois consécutifs</strong>.<br>Sont exclus les : CDD inférieure à 6 mois consécutifs, les intérimaires, les alternants, les stagiaires, les salariés en contrat d'apprentissage professionnalisation, les temps partiels strictement inférieurs à 80%, les salariés en période d'essai.<br><br>
+
+			La mise en place du télétravail est liée à sa compatibilité avec les emplois concernés et aux nécessités opérationnelles et organisationnelles. Le salarié souhaitant bénéficier du télétravail doit disposer d'une capacité d'autonomie suffisante et avoir atteint un niveau suffisant de performance dans son travail pour gérer son activité à distance.<br>
+			Les emplois repères éligibles sont tous les postes dont l'activité peut être exercée à distance, sans entraver la bonne marche du service.</p>
+
+		<h3>Cas particuliers des salariés relevant d'activité de vente (chargés de développement)</h3>
+
+		<p style="text-align: justify;">Pour les besoins de leurs activités, les chargés de développement effectuent de nombreux déplacements afin d'assurer notamment des permanences auprès des adhérents sur différents sites administratifs. Ils ne sont présents sur leur site de rattachement que deux à trois jours par semaine en moyenne. Dès lors, afin de garantir une présence minimale sur site, les salariés exerçant une activité commerciale ne pourront bénéficier que d'une journée de télétravail par semaine, s'ils souhaitent bénéficier du dispositif du télétravail à titre régulier ou occasionnel.<br><br>
+			Cette catégorie d'emplois sera donc éligible au télétravail à raison d'une journée maximum par semaine.</p>
+
+		<h3>Cas particulier des salariés relevant de l'activité support de proximité informatique</h3>
+
+		<p style="text-align: justify;">Le support informatique est avant tout un centre de service composé de personnels qualifiés et à l'écoute d'utilisateurs afin de répondre à des demandes d'incidents et/ou d'utilisations des outils informatiques tels que la messagerie, l'internet, l'accès à distance mais également le dépannage directement sur le poste de travail (branchement etc..). Pour les besoins de leurs activités et afin d'assurer une continuité de service sur site, la présence au bureau doit être à minima égale à 4 journées par semaine. Afin de garantir une présence optimisésite, les salariés exerçant une activité de support de proximité informatique ne pourront bénéficier que d'une journée de télétravail par semaine, s'ils souhabénéficier du dispositif du télétravail régulier ou occasionnel.<br><br>
+			Cette catégorie d'emplois sera donc éligible au télétravail à raison d'une journée maximum par semaine.</p>
+
+		<div style="margin: 10px 0 0 0">
+			<h3>
+				Cas particulier des salariés relevant de l'activité middle office
+			</h3>
+
+			<p style="text-align: justify;">L'activité middle office nécessite une présence sur site dans la mesure où des envois de courriers papiers doivent être régulièrement effectué.
+				<br>Pour répondre à des besoins ponctuels, l'activité peut nécessiter la vérification de documents originaux (papiers).<br><br>
+				Cette catégorie d'emplois sera donc éligible au télétravail à raison d'une journée maximum par semaine.</p>
+		</div>
+		<h3>
+			Activités non éligibles au télétravail
+		</h3>
+
+		<p style="text-align: justify;">Les emplois repères non éligibles au travail à distance sont les postes dont la nature de l'activité nécessite d'être sur le site de référence :
+			<li style="list-style-type: none ; margin : 7px 0">Activités des moyens généraux</li>
+			<li style="list-style-type: none ; margin : 7px 0">Activités GED</li>
+			<li style="list-style-type: none ; margin : 7px 0">Activité reprographie</li>
+		</p>
+
+		<h3>
+			Conditions d'éligibilité : nature du contrat, activité et autonomie (à compléter par le salarié)
+		</h3>
+
+		<li style="list-style-type: none ; margin : 7px 0">
+			<strong>Date d'embauche :</strong>
+		</li>
+
+		<li style="list-style-type: none ; margin : 7px 0">
+			<strong>Nature du contrat de travail :</strong>
+			{{ teletravail_form.natureContrat  }}
+		</li>
+
+		<li style="list-style-type: none ; margin : 7px 0">
+			<strong>Fonctions exercées :</strong>
+			{{ user.metier }}
+		</li>
+
+		<li style="list-style-type: none ; margin : 7px 0">
+			<strong>Quotité de travail :</strong>
+			{{ teletravail_form.quotite }}</li>
+
+		<h3>
+			Conditions techniques, matérielles et administrative pour accéder au télétravail (à compléter par le salarié)
+		</h3>
+
+		<li style="list-style-type: none ; margin : 7px 0; text-align: justify;">Connexion internet haut débit :
+			{{ teletravail_form.connexionInternet ? 'oui' : 'non' }}</li>
+
+		<li style="list-style-type: none ; margin : 7px 0">Attestation de votre compagnie d'assurances confirmant le fait que votre situation de télétravail est bien prise en compte dans le contrat d'assurance multirisque habitation, et que celui-ci couvre désormais votre présence pendant les journées de travail effectuées à son domicile (joint à la demande) ?</li>
+
+		<li style="list-style-type: none ; margin : 7px 0; text-align: justify;">Attestation déclarant sur l'honneur que vous disposez d'un espace de travail adapté au télétravail, respectant les règles d'hygiène, de sécurité et de bonnes conditions de travail, que votre logement est en conformité notamment les installations électriques, l'existence d'un accès internet à haut débit (joint à la demande) ?</li>
+
+
+		<h3>
+			Détail de la demande (à compléter par le salarié)
+		</h3>
+
+		<li style="list-style-type: none ; margin : 7px 0">Lieu du télétravail (adresse complète
+			<strong>conforme à celle présente sur l'attestation d'assurance</strong>) :
+			{{ teletravail_form.lieuTeletravail }}</li>
+
+		<li style="list-style-type: none ; margin : 7px 0">Demande à bénéficier du télétravail régulier à compter du :
+			<strong>{{ date(teletravail_form.aCompterDu)|date('d/m/Y') }}</strong>
+		</li>
+
+		<li style="list-style-type: none ; margin : 7px 0">Date de fin du télétravail (la durée ne peut être supérieure à 12 mois) :
+			<strong>{{ date(teletravail_form.dateFinTeletravail)|date('d/m/Y') }}</strong>
+		</li>
+
+		<li style="list-style-type: none ; margin : 7px 0">Journées télétravaillées, maximum 2 jours par semaine :
+			{% for day in teletravail_form.journeesTeletravaillees %}
+				{{ day }}
+				{% if not loop.last %},
+				{% endif %}
+			{% endfor %}
+
+		</li>
+
+		<div class="signature-frame" style="border: 2px solid black ; padding: 0 10px ; margin: 10px 0px 0px 0px">
+			<p style="text-align: justify;">J'atteste avoir pris connaissance des règles de cadrage du télétravail précisées dans l'accord relatif au télétravail en vigueur. Je m'engage à utiliser le matériel et les outils informatiques mis à ma disposition pour effectuer mon travail à domicile ainsi qu'à respecter les règles en vigueur en matière de sécurité du système d'information hrdoc définies dans la charte d'utilisation du système d'information et de communication de la hrdoc. Je m'engage également à respecter la charte sur le droit à la déconnexion en vigueur.
+			</p>
+
+			<p style="text-align: justify;">
+				<strong>Date de la demande et signature du salarié :</strong>
+				{{ date(teletravail_form.createdAt)|date('d/m/Y') }}
+			</p>
+
+			<div class="pdf-signature-wrapper">
+				<p class="tangerine">{{ user.name ~ ' ' ~ user.surname|lower|capitalize }}</p>
+			</div>
+		</div>
+
+		<div style="margin: 10px 0 0 0">
+
+			<h2>Validation Manager</h2>
+
+			<li style="list-style-type: none ; margin : 7px 0;">
+				<strong>Date de réception demande :</strong>
+				{{ date(teletravail_form.receptionDemande)|date('d/m/Y') }}
+			</li>
+
+			<li style="list-style-type: none ; margin : 7px 0;">
+				<strong>Période d'essai en cours :</strong>
+				{{ teletravail_form.periodeEssai ? 'oui' : 'non'}}</li>
+
+			<li style="list-style-type: none ; margin : 7px 0;">
+				<strong>Activité éligible :</strong>
+				{{ teletravail_form.activiteEligible ? 'oui' : 'non'}}</li>
+
+			<li style="list-style-type: none ; margin : 7px 0;">
+				<strong>Autonomie suffisante :</strong>
+				{{ teletravail_form.autonomieSuffisante ? 'oui' : 'non' }}</li>
+
+			<h4 style="margin : 7px 0">
+				La demande respecte
+			</h4>
+
+			<li style="margin : 16px 0 16px 25px;">Les conditions d'éligibilité :
+				{{ teletravail_form.conditionsEligibilites ? 'oui' : 'non' }}</li>
+
+			<li style="margin : 16px 0 16px 25px;">Les conditions techniques, matérielles et/ou administrative :
+				{{ teletravail_form.conditionsTechMatAdm ? 'oui' : 'non' }}</li>
+
+			<li style="list-style-type: none ; margin : 7px 0;">La répartition des journées télétravaillées ne désorganise pas l'activité du service (nombre de salariés en télétravail dépassant le quota journalier sur les journées souhaitées par le salarié...) et permet une présence sur site suffisante au regard de l'activité, étant précisé que la Direction recommande 50% de présence ? :
+				{{ teletravail_form.desorganiseService ? 'oui' : 'non' }}</li>
+
+
+			<div style="border: 2px solid black ; padding: 0 10px ; margin-top: 20px ">
+				<p style="text-align: justify;">
+					Date de validation ou non de la demande et visa du responsable hiérarchique :
+					Le manager dispose d'un délai de 14 jours maximum pour répondre à la demande du salarié
+					<strong>{{ teletravail_form.avisManager ? 'favorable' : 'défavorable' }}</strong>
+				</p>
+				<p>
+					<strong>{{ teletravail_form.commentaireManager}}</strong>
+				</p>
+				<p style="text-align: justify;">Je m'engage à accompagner le salarié durant les 4 prochains mois et à compléter le formulaire de validation du dispositif de télétravail à l'issu des 4 mois d'adaptation
+				</p>
+
+				<div class="pdf-signature-wrapper">
+					<p class="tangerine">{{ signature_manager }}</p>
+				</div>
+			</div>
+
+			<h3 style="margin-top: 55px ">Validation direction des ressources humaines</h3>
+
+			<div class="signature-frame" style="border: 2px solid black ; padding: 0 10px ; margin-top: 20px">
+				<p style="text-align: justify;">
+					Date de validation ou non de la demande et visa de la DRH :
+					<strong>{{ teletravail_form.avisDRH ? 'favorable' : 'défavorable' }}</strong>
+				</p>
+				<p>
+					<strong>{{ teletravail_form.commentaireDRH}}</strong>
+				</p>
+
+				<div class="pdf-signature-wrapper">
+					<p class="tangerine">{{ drh.name ~ ' ' ~ drh.surname|lower|capitalize }}
+</p>
+				</div>
+			</div>
+
+		</div>
+
+		<h3 style="margin-top: 20px ">
+			Retour collaborateur
+		</h3>
+
+		<div style="border: 2px solid black ; padding: 0 10px ; margin-top: 20px">
+			<p>
+				<strong>Date et signature du salarié :</strong>
+				{{ "now"|date("d/m/Y") }}
+			</p>
+			<p class="tangerine">{{ user.name ~ ' ' ~ user.surname|lower|capitalize }}</p>
+			<p>Le salarié pourra adresser une nouvelle demande une fois passé un délai de 6 mois à compter de la réponse négative du supérieur hiérarchique et de la Direction des Ressources Humaines.</p>
+		</div>
+
+	</body>
+</body>

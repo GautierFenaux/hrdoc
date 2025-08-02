@@ -1,0 +1,99 @@
+{{ form_start(form, {'attr': {'data-controller':'rh--teleworking', 'data-rh--teleworking-target':'form'}}) }}
+<div class="rh-summary">
+	<div class="collaborator-part-wrapper">
+		<h2>Récapitulatif de la demande collaborateur</h2>
+		<h3>Conditions d'éligibilité : nature du contrat, activité et autonomie</h3>
+		<div class="first-part-form">
+			<div class="first-part-form__a">
+				<p>Nature du contrat :
+					{{ teletravail_form.natureContrat }}</p>
+				<p>Quotité :
+					{{ teletravail_form.quotite }}</p>
+				<p>Fonction exercée :
+					{{ teletravail_form.fonctionExercee }}</p>
+			</div>
+		</div>
+		<div class="second-part-form">
+			<h3>Conditions techniques, matérielles et administratives pour accéder au télétravail</h3>
+
+			<p>Connexion internet :
+				{{ teletravail_form.ConnexionInternet ? 'Oui' : 'Non' }}</p>
+		</div>
+		<div class="third-part-form">
+			<h3>Détail de la demande</h3>
+
+			<p>Lieu du télétravail (adresse complète conforme à celle présente sur l'attestation d'assurance) :
+				{{ teletravail_form.lieuTeletravail  }}</p>
+			<p>Demande à bénéficier du télétravail régulier à compter du :
+				{{ date(teletravail_form.aCompterDu)|date('d/m/Y') }}</p>
+			<p>Date de fin du télétravail (la durée ne peut être supérieure à 12 mois) :
+				{{ date(teletravail_form.dateFinTeletravail)|date('d/m/Y') }}</p>
+
+			<p>Journée(s) télétravaillée(s), maximum 2 jours par semaine :
+				{% for day in teletravail_form.journeesTeletravaillees %}
+					{{ day }}
+					{% if not loop.last %},
+					{% endif %}
+				{% endfor %}
+
+			</p>
+		</div>
+	</div>
+	<div class="fourth-part-form">
+		<h2>Validation manager</h2>
+
+		<p>Période d'essai en cours :
+			{{ teletravail_form.periodeEssai is same as(true) ? 'Oui' : (teletravail_form.periodeEssai is same as(false) ? 'Non' : 'En attente') }}
+		</p>
+		<p>Activité éligible :
+			{{ teletravail_form.activiteEligible is same as(true) ? 'Oui' : (teletravail_form.activiteEligible is same as(false) ? 'Non' : 'En attente') }}
+		</p>
+		<p>Nature du contrat :
+			{{ teletravail_form.autonomieSuffisante is same as(true) ? 'Oui' : (teletravail_form.autonomieSuffisante is same as(false) ? 'Non' : 'En attente') }}
+		</p>
+		<h4>La demande respecte :</h4>
+		<p>Les conditions d'élégibilités :
+			{{ teletravail_form.conditionsEligibilites is same as(true) ? 'Oui' : (teletravail_form.conditionsEligibilites is same as(false) ? 'Non' : 'En attente') }}
+		</p>
+		<p>Les conditions techniques, matérielles et administratives :
+			{{ teletravail_form.conditionsTechMatAdm is same as(true) ? 'Oui' : (teletravail_form.conditionsTechMatAdm is same as(false) ? 'Non' : 'En attente') }}
+		</p>
+		<p>Ne désorganise pas le service :
+			{{ teletravail_form.desorganiseService is same as(true) ? 'Oui' : (teletravail_form.desorganiseService is same as(false) ? 'Non' : 'En attente') }}
+		</p>
+		<p>Avis du manager :
+			{{ teletravail_form.avisManager is same as(true) ? 'Favorable' : (teletravail_form.avisManager is same as(false) ? 'Défavorable' : 'En attente') }}
+		</p>
+		<p>Commentaire du manager :
+			{{ teletravail_form.commentaireManager ? teletravail_form.commentaireManager : 'Aucun commentaire' }}
+		</p>
+		<h2>Validation RH</h2>
+		<p>Avis du DRH :
+			{{ teletravail_form.avisDRH is same as(true) ? 'Favorable' : (teletravail_form.avisDRH is same as(false) ? 'Défavorable' : 'En attente') }}
+		</p>
+		<p>Commentaire DRH :
+			{{ teletravail_form.commentaireDRH ? teletravail_form.commentaireDRH : 'Aucun commentaire' }}
+		</p>
+		<div class="flex-column">
+			<a class="attestation" href="{{ path('app_display_pdf', {'id': teletravail_form.id, 'file': 'attestation_assurance' }) }}" target="_blank">attestation assurance
+				<i class="fa-solid fa-up-right-from-square"></i>
+			</a>
+		</div>
+		{{ form_row(form.avisDRH, {'attr':{'data-rh--teleworking-target':'avisUnused'}}) }}
+		<div>
+			<label>Avis de la DRH :
+			</label>
+			{% for label, value in field_choices(form.avisDRH) %}
+				<input id="teletravail_form_avisDRH_{{loop.index0}}" type="radio" name="teletravail_form[avisDRH]" value="{{ value }}" placeholder="teletravail_form_avisDRH_placeholder_{{loop.index0}}" data-action="click->rh--teleworking#displayComments">
+				<label for="teletravail_form_avisDRH_{{loop.index0}}">{{label}}</label>
+			{% endfor %}
+		</div>
+		<div class="drh-comment" data-rh--teleworking-target="rhComment">
+			{{ form_label(form.commentaireDRH) }}
+			{{ form_widget(form.commentaireDRH) }}
+		</div>
+	</div>
+	{# <input id="rh-teletravail-form-button" class="btn validation" value="Signer" type="submit"> #}
+		<button class="btn validation">{{ button_label|default('Signer') }}</button>
+
+	{{ form_end(form) }}

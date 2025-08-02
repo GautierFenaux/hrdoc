@@ -1,0 +1,14 @@
+<table class="{{class}}" id="{{id}}" data-controller="table">
+	<thead>
+		<tr>
+			{% for col in head["col"] %}
+				<th>{{col}}</th>
+			{% endfor %}
+		</tr>
+	</thead>
+	<tbody>
+		{% for entity in entities %}
+			{% block table_content %}{% endblock %}
+		{% endfor %}
+	</tbody>
+</table>

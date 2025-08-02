@@ -1,0 +1,32 @@
+Bonjour,<br><br>
+
+{% if form.restitution == true %}
+
+	Pour valider la demande de CET, rendez-vous sur votre espace
+
+
+{% elseif form.state == 'attente-rh' %}
+
+	{{ form.manager.name }}
+	vient de valider une demande relative au CET de
+	{{ form.user.name }}
+	{{ form.user.surName }}
+	<br><br>
+
+	Vous pouvez la consulter et valider cette demande en vous rendant sur
+
+{% else %}
+
+
+	{{ form.manager.name }}
+	vient de refuser une demande relative au CET de
+	{{ form.user.name }}
+	{{ form.user.surName }}
+	<br><br>
+
+	Vous pouvez consulter cette demande en vous rendant sur
+
+{% endif %}
+
+<a href="{{ target_url }}">Hrdoc</a>.
+<p>Cordialement</p>

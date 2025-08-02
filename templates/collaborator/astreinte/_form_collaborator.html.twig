@@ -1,0 +1,84 @@
+{{ form_start(form) }}
+<p>Votre manager vous demande une période d'opérations du
+	{{ date(astreinte.debutAstreinte)|date('d/m/Y') }}
+	au
+	{{ date(astreinte.finAstreinte)|date('d/m/Y') }}
+	pour la raison suivante :
+	<br><br>
+</p>
+<span style="margin-right : 0.5rem">-</span>
+{{ astreinte.motif }}
+{% if edit == 'isEditAfterRhValidation' %}
+	<h3 class="my-1">Veuillez saisir vos temps post opération</h3>
+	{% if astreinte.state == 'réouvert-rh-postop' %}
+		<p class="mb-1">
+			<strong>Les RH vous demande de ressaisir vos temps d'opération</strong>
+		</p>
+	{% endif %}
+	<div class="my-1">
+		Type d'opération :
+		{% if astreinte.astreinte  %}
+			<strong>astreinte</strong>
+		{% else %}
+			<strong>jour travaillé</strong>
+		{% endif %}
+	</div>
+	<table id="astreintePostOpTable">
+		<thead>
+			<tr>
+				<th>Date de l'opération</th>
+				<th>Début opération</th>
+				<th>Début pause déjeuner</th>
+				<th>Fin pause déjeuner</th>
+				<th>Fin opération</th>
+				<th>Temps intervention jour (en heures)</th>
+				<th>Temps intervention nuit (en heures)</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for i in range(1, astreinte_days + 1) %}
+				<tr>
+					{% set count = i - 1 %}
+					<td>{{ astreinte.debutAstreinte|date_modify(count ~" day")|date('d-m-Y') }}</td>
+					{% for j in range(1, 4) %}
+						<td>
+							{{ form_widget((form.children)['timeSlot_'~i~'_'~j]) }}
+						</td>
+					{% endfor %}
+					<td>
+						{{ form_widget((form.children)['tempsJour_'~count]) }}
+					</td>
+					<td>
+						{{ form_widget((form.children)['tempsNuit_'~count]) }}
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	
+	<div>
+		{{ form_widget(form.repos) }}
+		{{ form_label(form.repos) }}
+	</div>
+
+{% else %}
+	<div>
+		<div class="form-input">
+			{{ form_label(form.isOk) }}
+			{{ form_widget(form.isOk) }}
+		</div>
+
+		<div class="align-center hidden-field pattern mt-1">
+			{{ form_label(form.motifRefusCollab) }}
+			{{ form_widget(form.motifRefusCollab, { 'attr' : {'class':'ml-1'}}) }}
+		</div>
+	</div>
+{% endif %}
+<button class="btn validation">{{ button_label|default('Valider') }}</button>
+{{ form_end(form) }}
+
+{# {% block javascripts %}
+
+	<script type="module" src="{{ asset('js/toggleHiddenField.js') }}"></script>
+
+{% endblock %} #}

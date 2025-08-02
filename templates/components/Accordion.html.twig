@@ -1,0 +1,14 @@
+<div class={{ class }} id="{{id}}" data-action="click->dashboard#toggleAccordion">
+	<h1 class="title">
+		<a>{{title}}</a>
+	</h1>
+	<div class="content">
+		<div class="wrapper-accordion">
+			<div class="dashboard-table">
+				<div>
+					{% block content %}{% endblock %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

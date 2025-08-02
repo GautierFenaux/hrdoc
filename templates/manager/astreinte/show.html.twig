@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}récapitulatif demande d'opération
+{% endblock %}
+
+{% block body %}
+	<h1>Récapitulatif de la demande d'opération concernant {{astreinte.user.name}} {{astreinte.user.surName}}</h1>
+	<twig:FormWrapper:FormWrapper>
+		<twig:block name="form_content">
+			<div>
+				Motif de la demande :  <br> - <strong>{{astreinte.motif}}</strong>
+				<p class="mt-1" >Type d'opération :
+                <strong>
+					{% if astreinte.astreinte  %}
+						astreinte
+					{% else %}
+						jour travaillé
+					{% endif %}
+                    </strong>
+				</p>
+				<table class="my-1 astreinte-table-recap">
+					<thead>
+						<tr>
+							<th>Journée</th>
+							<th>Plage Horaire</th>
+							<th>Temps opération</th>
+							<th>Temps déjeuner</th>
+							<th>Temps intervention jour</th>
+							<th>Temps intervention nuit</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for key, item in astreinte.plageHoraire %}
+							<tr>
+								<td>{{key}}</td>
+								<td>{{item}}</td>
+								<td>{{astreinte.tempsOperation[key]}}</td>
+								<td>{{astreinte.tempsDejeuner[key]}}</td>
+								<td>{{astreinte.tempsInterventionJour[key]}}h</td>
+								<td>{{astreinte.tempsInterventionNuit[key]}}h</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</twig:block>
+	</twig:FormWrapper:FormWrapper>
+{% endblock %}

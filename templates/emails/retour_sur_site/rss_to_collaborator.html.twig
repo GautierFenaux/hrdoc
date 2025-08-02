@@ -1,0 +1,39 @@
+<p>
+
+Bonjour {{ retour_sur_site.user.name }},</br></br>
+
+{{ retour_sur_site.manager.name }} vient d'effectuer une demande de retour sur site vous concernant pour la date du {{ retour_sur_site.dateFinTeletravail|date('d/m/Y')}}.</br></br>
+
+Veuillez trouver les raisons de ce retour sur site ci-dessous :
+
+<ul>
+    {% if retour_sur_site.desorganiseService is same as true %}
+        <li>Désorganise le service</li>
+    {% endif %}
+
+    {% if retour_sur_site.autonomieInsuffisante is same as true %}
+        <li>Autonomie insuffisante</li>
+    {% endif %}
+
+    {% if retour_sur_site.problemesConnexion is same as true %}
+        <li>Problèmes de connexion</li>
+    {% endif %}
+
+    {% if retour_sur_site.collaborateurInjoignable is same as true %}
+        <li>Collaborateur injoignable</li>
+    {% endif %}
+
+    {% if retour_sur_site.diminutionProductivite is same as true %}
+        <li>Diminution de la productivité</li>
+    {% endif %}
+
+    {% if retour_sur_site.autres is not null %}
+        <li>{{ retour_sur_site.autres }}</li>
+    {% endif %}
+</ul>
+
+
+<a> Pour voir la demande rendez-vous sur <a href="{{ target_url }}">Hrdoc</a>
+
+
+<p>Cordialement</p>

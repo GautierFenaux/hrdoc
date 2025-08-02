@@ -1,0 +1,30 @@
+<turbo-stream target="{{entity.id}}" action="replace">
+	<template>
+		{% if get_class_name(entity) is same as 'user' %}
+			<tr id="{{entity.id}}" data-message="{{toast_message}}">
+				<td>
+					{{ entity.name }}
+					{{ entity.surname }}
+				</td>
+				<td>
+
+					{{status}}
+				</td>
+				<td>
+					{% if status is same as 'attente-manager' %}
+						Manager relancé le
+					{% endif %}
+					{{ date('now')|date('d/m/Y')}}
+				</td>
+				<td class="reminder-bell">
+					{% set entityId = entity.id %}
+					{% set status = status %}
+					{% set myParams = {'id': [entityId], 'status': [status]} %}
+					<twig:Link action="reminder" dataRequestType="relaunch" typeOfEntity="teletravail_form" :params="myParams" dataAction="click->table#comfirm" />
+				</td>
+			</tr>
+			{% else %}
+			<twig:TableExt:IndexTable :entity="entity" role="{{role}}" dataMessage="{{toast_message}}"/>
+		{% endif %}
+	</template>
+</turbo-stream>

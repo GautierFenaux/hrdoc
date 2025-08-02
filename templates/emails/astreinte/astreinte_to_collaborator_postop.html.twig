@@ -1,0 +1,28 @@
+Bonjour
+{{ form.user.name }},<br><br>
+
+{% if form.state == 'réouvert-manager-postop' or form.state == 'réouvert-rh-postop'%}
+	La saisie des temps concernant les opérations du
+	{{ form.debutAstreinte|date('d/m/Y')}}
+	au
+	{{ form.finAstreinte|date('d/m/Y')}}
+	n'a pas été validée.<br><br>
+
+	Veuillez ressaisir le nombre d'heures.
+{% else %}
+	La saisie des temps concernant les opérations du
+	{{ form.debutAstreinte|date('d/m/Y')}}
+	au
+	{{ form.finAstreinte|date('d/m/Y')}}
+	a été validée.<br><br>
+
+	Vous bénéficiez maintenant d'une valorisation de
+	{{ form.tempsValorise }}
+	{% if form.user.forfaitHeure %}heures{% else %}jours
+	{% endif %}.
+{% endif %}
+
+
+<br><br>
+
+Cordialement,

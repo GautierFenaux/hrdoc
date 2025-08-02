@@ -1,0 +1,127 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Tableau de bord RH
+{% endblock %}
+
+{% block body %}
+	<div class="banner-wrapper">
+				<img src="{{ asset('images/hrdoc_logo.png') }}" alt="">
+
+	</div>
+	<div class="dashboard-menu rh-dashboard">
+		<h3>Bienvenue
+			{{ app.user.name }}👋</h3>
+
+		<div id="wrapper-tab-panel">
+
+			<input class="radio" id="two" name="group" type="radio" checked>
+			<input class="radio" id="three" name="group" type="radio">
+			{# <input class="radio" id="fourth" name="group" type="radio"> #}
+			<input class="radio" id="fifth" name="group" type="radio">
+
+			<div class="tabs">
+				<label class="tab" id="two-tab" for="two">Télétravail
+					{% if pending_rh_teletravail > 0 %}
+						<span class="notification-bubble">{{ pending_rh_teletravail }}</span>
+					{% endif %}
+				</label>
+				<label class="tab" id="three-tab" for="three">CET
+					{% if waiting_rh_cet > 0 %}
+						<span class="notification-bubble">{{ waiting_rh_cet }}</span>
+					{% endif %}
+				</label>
+				{# <label class="tab" id="fourth-tab" for="fourth">RSS
+					{% if pending_rh_rss > 0 %}
+						<span class="notification-bubble">{{ pending_rh_rss }}</span>
+					{% endif %}
+				</label> #}
+				<label class="tab" id="fifth-tab" for="fifth">Opérations
+					{% if pending_rh_astreinte > 0 %}
+						<span class="notification-bubble">{{ pending_rh_astreinte }}</span>
+					{% endif %}
+				</label>
+			</div>
+			<div class="panels">
+				<div class="panel" id="two-panel">
+					<div class="request-teletravail">
+						<div class="request-card">
+							<h4>Demande de télétravail pour l'année
+								{{ "now"|date("Y") }}
+								<span></span>
+							</h4>
+							<div class="chart-wrapper" id="chartWrapper">
+								{{ render_chart(teleworking_chart) }}
+							</div>
+							<div class="flex">
+								<a class="btn btn-rh-dashboard" href="{{ path('app_teletravailform_rh_index') }}">Afficher</a>
+								<a class="btn btn-rh-dashboard" id="teletravail-reminder" href="{{ path('app_teletravail_form_rh_reminder') }}">Relancer</a>
+							</div>
+
+						</div>
+					</div>
+					<button class="btn btn-table">
+						<a href="{{ path('app_export_formulaire', {'type' : 'teletravail'}) }}">Exporter</a>
+					</button>
+				</div>
+
+				<div class="panel" id="three-panel">
+					<div class="request-cet">
+						<div class="request-card">
+							<h4>Demande de CET
+								{{ "now"|date("Y") }}
+								<span></span>
+							</h4>
+							<div class="chart-wrapper">
+								{{render_chart(cet_chart)}}
+							</div>
+							<div class="flex">
+								<a class="btn btn-rh-dashboard" href="{{ path('app_cet_rh_index') }}">Afficher</a>
+								<a class="btn btn-rh-dashboard" id="teletravail-reminder" href="{{ path('app_cet_rh_reminder') }}">Relancer</a>
+							</div>
+						</div>
+					</div>
+					<button class="btn btn-table">
+						<a href="{{ path('app_export_formulaire', {'type' : 'cet'}) }}">Exporter</a>
+					</button>
+				</div>
+				{# <div class="panel" id="fourth-panel">
+					<div class="request-cet">
+						<div class="request-card">
+								<h4>Demande de RSS
+									{{ "now"|date("Y") }}
+									<span></span>
+								</h4>
+							<div class="chart-wrapper">
+									{{render_chart(chart)}}
+							</div>
+							<div class="flex">
+								<a class="btn btn-rh-dashboard" href="{{ path('app_retour_sur_site_rh_index') }}">Afficher</a>
+								<a class="btn btn-rh-dashboard" id="teletravail-reminder" href="{{ path('app_cet_rh_reminder') }}">Relancer</a>
+							</div>
+							</div>
+						</div>
+						<button class="btn btn-table">
+							<a href="{{ path('app_export_formulaire', {'type' : 'cet'}) }}">Exporter</a>
+						</button>
+					</div> #}
+
+				<div class="panel" id="fifth-panel">
+					<div class="request-cet">
+						<div class="request-card">
+							<h4>Demande d'opération
+								{{ "now"|date("Y") }}
+								<span></span>
+							</h4>
+							{# <div class="chart-cet"></div> #}
+							<div class="flex">
+								<a class="btn btn-rh-dashboard" href="{{ path('app_astreinte_rh_index') }}">Afficher</a>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

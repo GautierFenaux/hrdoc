@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Retour sur site index
+{% endblock %}
+
+{% block body %}
+	<h1>Gestion des retours sur site</h1>
+
+	{{ include('./components/message.html.twig')}}
+
+	{% if retours_sur_site|length > 0 %}
+		<table id="indexTable" class="cell-border compact stripe">
+			<thead>
+				<tr>
+					<th>Fait le</th>
+					<th>Collaborateur</th>
+					<th>Etat</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for retour_sur_site in retours_sur_site %}
+					<tr data-id={{ retour_sur_site.id }}>
+						<td>{{ retour_sur_site.createdAt|date('d-m-Y') }}</td>
+						<td>{{ retour_sur_site.user.name }}
+							{{ retour_sur_site.user.surName }}</td>
+						<td class="state">{{ retour_sur_site.state }}</td>
+						<td class="index-buttons" id="index-buttons-rss">
+							<a class="btn-table-form tooltip cet-links-dashboard" href="{{ path('app_retour_sur_site_show', {'id': retour_sur_site.id}) }}">
+								<i class="fa-solid fa-eye "></i>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</tbody>
+	</table>
+{% else %}
+	<p>Vous n'avez aucune demande en cours.</p>
+{% endif %}{% endblock %}

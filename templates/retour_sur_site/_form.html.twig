@@ -1,0 +1,30 @@
+{{ form_start(form) }}
+
+
+	<div class="form-part-wrapper"> 
+	<h3>Précisez la raison de votre demande</h3>
+		<div class="second-part-form">
+			{{ form_row(form.user) }}
+			<div class="calendar--wrapper">
+				{{ form_label(form.dateFinTeletravail) }}
+				<div class="calendar-position">
+					{{ form_widget(form.dateFinTeletravail) }}
+				</div>
+			</div>
+
+			{{ form_row(form.autonomieInsuffisante) }}
+			{{ form_row(form.diminutionProductivite) }}
+			{{ form_row(form.ProblemesConnexion) }}
+			{{ form_row(form.collaborateurInjoignable) }}
+			{{ form_row(form.desorganiseService) }}
+			<div class="first-part-form__a">
+				{{form_label(form.autres)}}
+				{{form_widget(form.autres)}}
+			</div>
+
+		</div>
+	</div>
+    <button class="btn validation">{{ button_label|default('Valider') }}</button>
+</div>
+
+{{ form_end(form) }}

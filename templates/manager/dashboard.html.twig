@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block title %}Tableau de bord manager
+{% endblock %}
+{% block body %}
+	<div class="banner-wrapper">
+		<img src="{{ asset('images/hrdoc_logo.svg') }}" alt="">
+	</div>
+	<div class="header">
+		<ul>
+			{# <a class="btn" href="{{ path('app_retour_sur_site_manager_new') }}">Demande de retour sur site</a> #}
+			<a class="btn" href="{{ path('app_astreinte_manager_new') }}">Demande d'opération</a>
+		</ul>
+	</div>
+	<div class="dashboard-menu">
+		{{ include('./components/message.html.twig')}}
+		<h3>
+			Bienvenue
+			{{user.name}}
+			👋
+		</h3>
+
+		<p>Procédures à valider :
+		</p>
+		<div class="request-manager ">
+			<div class="clickable-card">
+				<a href="{{ path('app_teletravail_form_manager_index') }}">
+					<p>Télétravail :
+						<span>{{teletravail_forms|length }}</span>
+					</p>
+				</a>
+			</div>
+			<div class="clickable-card">
+				<a href="{{ path('app_cet_manager_index') }}">
+					<p>CET  :
+						<span>{{cets|length }}</span>
+					</p>
+				</a>
+			</div>
+			<div class="clickable-card">
+				<a href="{{ path('app_astreinte_manager_index') }}">
+					<p>Opération :
+						<span>{{astreintes|length }}</span>
+					</p>
+				</a>
+			</div>
+		</div>	
+	</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% block title %}Relance CET
+{% endblock %}
+{% block body %}
+	<h1>Gestion des relances de CET
+		{{date('now')|date('Y')}}</h1>
+	{% if managers_to_remind|length > 0 %}
+		<table id="indexTable" class="cell-border compact stripe forfait-jour-table">
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Statut</th>
+					<th class="reminder-title">Relance</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for key, manager_to_remind in managers_to_remind %}
+					<tr>
+						<td>
+							{{ key | split('-') | last }}
+						</td>
+						<td>
+							attente-manager
+						</td>
+						<td class="reminder-bell">
+							<span data-id="{{ key }}" data-status='attente-manager' class="reminder">
+								<i class="fa-regular fa-bell fa-xl"></i>
+							</span>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<p>Vous n'avez aucune relance à effectuer.</p>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% for message in app.flashes('success') %}
+    <div class="alert alter-success">
+        <p>{{message}}</p>
+    </div>
+{% endfor %}
+{% for message in app.flashes('note') %}
+    <div class="alert alter-success">
+        <p>{{message}}</p>
+    </div>
+{% endfor %}
+
+{% for message in app.flashes('danger') %}
+    <div class="alert alter-danger">
+        <p>{{message}}</p>
+    </div>
+{% endfor %}
+
+
+

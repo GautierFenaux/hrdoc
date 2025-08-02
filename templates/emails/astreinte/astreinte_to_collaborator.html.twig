@@ -1,0 +1,62 @@
+{% if form.isOkRh is same as true %}
+
+	Bonjour
+	{{ form.user.name }},<br><br>
+	La demande d'opération vous concernant a été validée, elle aura lieu du
+	{{ form.debutAstreinte|date('d/m/Y')}}
+	au
+	{{ form.finAstreinte|date('d/m/Y')}}.<br><br>
+
+	Veuillez trouver les motifs justifiant cette demande d'opération ci-dessous :
+	<br><br>
+	<strong>{{ form.motif }}</strong>
+	<br><br>
+	<strong>IMPORTANT : Une fois l'opération effectuée n'oubliez pas de remplir les temps relatifs à l'opération</strong>
+	<br><br>
+{% elseif form.isOkRh is same as false %}
+
+	Bonjour
+	{{ form.user.name }},<br><br>
+
+	La demande d'opération vous concernant n'a pas été approuvée par le service RH.<br><br>
+
+	Veuillez trouver les motifs justifiant cette réponse ci-dessous :
+	<br><br>
+
+	<strong>
+		{{ form.motifRefusRh }}</strong>
+	<br><br>
+
+{% elseif form.state == 'réouvert-rh-postop' %}
+	La saisie des temps post opération concernant l'opération du {{ form.debutAstreinte|date('d/m/Y')}}
+	au
+	{{ form.finAstreinte|date('d/m/Y')}}.<br><br> a été réouverte.
+	Veuillez trouver les motifs de la réouverture ci-dessous :
+	<br><br>
+	<strong>{{ form.motif }}</strong>
+	<br><br>
+{% endif %}
+
+
+{% if form.isOkRh is same as null %}
+	<p>
+		Bonjour
+		{{ form.user.name }},<br><br>
+
+		{{ form.manager.name }}
+		vient d'effectuer une demande d'opération vous concernant, du
+		{{ form.debutAstreinte|date('d/m/Y')}}
+		au
+		{{ form.finAstreinte|date('d/m/Y')}}.<br><br>Veuillez trouver les motifs justifiant cette demande d'opération ci-dessous :
+	</p>
+	<p>
+		<strong>{{ form.motif }}</strong>
+	</p>
+
+
+{% endif %}
+
+<a>
+	Pour voir la demande rendez-vous sur
+	<a href="{{ target_url }}">Hrdoc</a>
+	<p>Cordialement</p>

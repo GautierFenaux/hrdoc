@@ -1,0 +1,186 @@
+<tr id="{{ entity.id }}" data-message="{{dataMessage}}">
+	<td>{{ entity.user.name }}
+		{{ entity.user.surName }}</td>
+	{% if get_class_name(entity) == 'cet' %}
+		{% if entity.alimentation == true %}
+			<td>{{ entity.droitCongesCumule }}</td>
+			<td>{{ entity.nbJoursCongesUtilises }}</td>
+			<td>{{ entity.soldeJoursCongesNonPris }}</td>
+			<td>{{ entity.nbJoursVersement }}</td>
+		{% elseif entity.utilisation == true %}
+			<td>{{ entity.nbJours }}</td>
+			<td>{{ entity.nbJoursADebiter }}</td>
+			<td>{{ entity.solde }}</td>
+			<td>{{ date(entity.priseCetDebut)|date('d-m-Y') }}</td>
+			<td>{{ date(entity.priseCetFin)|date('d-m-Y') }}</td>
+		{% elseif entity.restitution == true %}
+			<td>{{ entity.nbJoursLiquide }}</td>
+			<td>{{ entity.commentaireSupHierarchique }}</td>
+		{% endif %}
+		<td class="state">{{ entity.state.value }}</td>
+		{# TODO: enlever le style directement dans la balise ci-dessous #}
+		<td {{ role is same as 'manager' ? "style='min-width:100px'": "style='min-width:135px'" }}>
+			{% if (role is same as 'manager' and entity.state.value in ['attente-manager'])  %}
+				<twig:Link :entity="entity" action="edit" :role="role" dataRequestType="signature" dataAction="click->link#editWithComment"/>
+				<twig:Link :entity="entity" action="edit" :role="role" dataRequestType="refuse" dataAction="click->link#editWithComment" data-link-id-value="{{ entity.id }}"/>
+			{% elseif (role is same as 'rh' and entity.state.value in ['attente-rh']) %}
+				<twig:Link :entity="entity" action="edit" :role="role" dataRequestType="signature" dataAction="click->link#editWithComment"/>
+				<twig:Link :entity="entity" action="edit" :role="role" dataRequestType="reopen" dataAction="click->link#editWithComment"/>
+				<twig:Link :entity="entity" action="edit" :role="role" dataRequestType="refuse" dataAction="click->link#editWithComment"/>
+			{% else %}
+				{# faire un composant pr les disabled button ? #}
+				<twig:Link :entity="entity" action="signature" :role="role" dataRequestType="signature" isDisabled="true"/>
+				{% if role is same as 'rh' %}
+					<twig:Link :entity="entity" action="edit" :role="role" dataRequestType="reopen" isDisabled="true"/>
+				{% endif %}
+				<twig:Link :entity="entity" action="edit" :role="role" dataRequestType="refuse" isDisabled="true"/>
+			{% endif %}
+		</td>
+	{% elseif get_class_name(entity) == 'teletravailform' %}
+		{% if (role is same as 'rh') %}
+			<td>{{ date(entity.aCompterDu)|date('Y') }}</td>
+			<td>{{ entity.avisManager is same as(true) ? 'Favorable' : (entity.avisManager is same as(false) ? 'Défavorable' : 'En attente') }}</td>
+			<td>{{ entity.avisDRH is same as(true) ? 'Favorable' : (entity.avisDRH is same as(false) ? 'Défavorable' : 'En attente') }}</td>
+			<td class="state">{{ entity.state.value }}</td>
+			<td class="flex flex-between">
+				<twig:Link :entity="entity" action="show" dataRequestType="show" isTargetBlank="true"/>
+				{% if (entity.state.value == 'validé-manager' or entity.state.value == 'refus-manager' or entity.state.value == 'attente-rh' )  %}
+					<twig:Link :entity="entity" action="edit" :role="role" dataRequestType="edit" isTargetBlank="true"/>
+					{# ajouter turbo  stream pour lors de la requête ajax #}
+					<twig:Link :entity="entity" action="reopen" :role="role" dataRequestType="reopen" />
+				{% else %}
+					<twig:Link :entity="entity" action="edit" :role="role" dataRequestType="edit" isDisabled="true"/>
+					<twig:Link :entity="entity" action="reopen" :role="role"  dataRequestType="reopen" isDisabled="true"/>
+				{% endif %}
+				{% if entity.state != 'validé' %}
+					<twig:Link :entity="entity" action="download" dataRequestType="download" isDisabled="true"/>
+				{% else %}
+					<twig:Link :entity="entity" action="download" dataRequestType="download"/>
+				{% endif %}
+				{{ include('rh/teletravail_form/_delete_form.html.twig') }}
+			</td>
+		{% else %}
+			<td>
+				{% for day in entity.journeesTeletravaillees %}
+					{% if loop.last %}
+						{{ day }}
+					{% else %}
+						{{ day }},
+					{% endif %}
+				{% endfor %}
+			</td>
+			<td>
+				{{ entity.avisManager is same as(true) ? 'Favorable' : (entity.avisManager is same as(false) ? 'Défavorable' : 'En attente') }}
+			</td>
+			<td>
+				{{ entity.avisDRH is same as(true) ? 'Favorable' : (entity.avisDRH is same as(false) ? 'Défavorable' : 'En attente') }}
+			</td>
+			<td>
+				{{ entity.state.value }}
+			</td>
+			<td>
+				{% if entity.state.value != 'attente-manager' %}
+					<twig:Link :entity="entity" action="edit" dataRequestType="edit" :role="role" isDisabled="true"/>
+				{% else %}
+					<twig:Link :entity="entity" action="edit" dataRequestType="edit" :role="role"/>
+				{% endif %}
+			</td>
+		{% endif %}
+	{% elseif get_class_name(entity) == 'astreinte' %}
+		{% if (role is same as 'rh') %}
+			<td>{{ entity.createdAt ? entity.createdAt|date('d-m-Y') : '' }}</td>
+			<td>{{ entity.manager.name }}</td>
+			<td>{{ entity.debutAstreinte ? entity.debutAstreinte|date('d-m-Y') }}</td>
+			<td>{{ entity.finAstreinte ? entity.finAstreinte|date('d-m-Y')}}</td>
+			<td>
+				{% if entity.motif|length < 25 %}
+					<span>{{ entity.motif }}</span>
+				{% else %}
+					<a class="tooltip">
+						<span class="tooltiptext-pattern">{{ entity.motif }}</span>
+						<span>{{ entity.motif[0:25] }}...</span>
+					</a>
+				{% endif %}
+			</td>
+			<td>{{ entity.isOk ? 'Oui' : 'Non' }}</td>
+			<td>{{ entity.motifRefusCollab }}</td>
+			<td>{{ entity.state }}
+			</td>
+			<td>
+				{% if (entity.state == 'validé-collaborateur' or entity.state == 'validé-manager-postop')  %}
+					<twig:Link :entity="entity" action="edit" dataRequestType="edit" :role="role" isTargetBlank="true"/>
+				{% else %}
+					<twig:Link :entity="entity" action="signature" dataRequestType="signature" :role="role" isDisabled="true"/>
+				{% endif %}
+			</td>
+		{% else %}
+			<td>{{ entity.createdAt ? entity.createdAt|date('d-m-Y') : '' }}</td>
+			<td>
+				{% if entity.motif|length < 25 %}
+					<span>{{ entity.motif }}</span>
+				{% else %}
+					<a class="tooltip">
+						<span class="tooltiptext-pattern">{{ entity.motif }}</span>
+						<span>{{ entity.motif[0:25] }}...
+						</span>
+						{# <i class="fas fa-eye "></i> #}
+					</a>
+				{% endif %}
+			</td>
+			<td>
+				{% if entity.astreinte  %}
+					astreinte
+				{% else %}
+					jour travaillé
+				{% endif %}
+			</td>
+			{% if entity.tempsInterventionJour is not null %}
+				<td>
+					{% for key, item in entity.tempsInterventionJour %}
+						<span>{{ key }}
+							:
+						</span>
+						<span>{{ item }}</span><br>
+					{% endfor %}
+				</td>
+				<td>
+					{% for key, item in entity.tempsInterventionNuit %}
+						<span>{{ key }}
+							:
+						</span>
+						<span>{{ item }}</span><br>
+					{% endfor %}
+				</td>
+			{% else %}
+				<td>non-saisi</td>
+				<td>non-saisi</td>
+			{% endif %}
+
+		</td>
+		<td>
+			{% if entity.tempsValorise is not null %}
+				{{ entity.tempsValorise}}
+				{% if entity.user.forfaitHeure %}
+					heure(s)
+				{% else %}
+					jour(s)
+				{% endif %}
+			{% else %}
+				non-saisi
+			{% endif %}
+		</td>
+		<td class="state">{{ entity.state }}</td>
+		<td style="min-width:184px">
+			{% if (entity.state == "validé-collaborateur-postop") %}
+				<twig:Link action="edit" :entity="entity" dataRequestType="signature" :role="role"/>
+				<twig:Link action="edit" :entity="entity" dataRequestType="reopen" :role="role"/>
+				<twig:Link action="edit" :entity="entity" dataRequestType="refuse" :role="role"/>
+			{% else %}
+				<twig:Link :entity="entity" dataRequestType="signature" isDisabled="true" :role="role"/>
+				<twig:Link :entity="entity" dataRequestType="reopen" isDisabled="true" :role="role"/>
+				<twig:Link :entity="entity" dataRequestType="refuse" isDisabled="true" :role="role"/>
+			{% endif %}
+			<twig:Link action="show" :entity="entity" dataRequestType="show" :role="role" isTargetBlank="true"/>
+		</td>
+	{% endif %}
+{% endif %}</tr>

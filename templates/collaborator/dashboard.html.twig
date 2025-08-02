@@ -1,0 +1,131 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord
+{% endblock %}
+
+{% block body %}
+	<div class="banner-wrapper">
+		<img src="{{ asset('images/hrdoc_logo.png') }}" alt="">
+	</div>
+
+	{% if (user.eligibleTT) or (user.eligibleCet) %}
+		<div class="header">
+			<ul>
+				{% if (user.eligibleTT == 1) %}
+					<li>
+						<a class="btn" href="{{ path('app_teletravail_form_new') }}" id="teletravail-button">Demande télétravail</a>
+					</li>
+				{% endif %}
+				{% if (user.eligibleCet == 1) %}
+					<li>
+						<a class="btn" href="{{ path('app_cet_new') }}">Demande CET</a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
+	{% endif %}
+	<div class="dashboard-menu" data-controller="dashboard">
+		{{ include('./components/message.html.twig')}}
+		<h3>
+			Bienvenue
+			{{user.name}}
+			👋
+		</h3>
+		{% if (cets is empty) and (teletravail_form is empty) and (astreintes is empty) %}
+			<p class="process-title">Procédures en cours :</p>
+			<div>Vous n'avez aucune procédure en cours.</div>
+		{% else %}
+			<p class="process-title">Procédures en cours :</p>
+		{% endif %}
+		{% if cets is not empty %}
+			<twig:Accordion id="cet-accordion" title="Demande de CET">
+				<twig:block name="content">
+					<twig:Table id="dashboardCetTable" :head="{col: ['Fait le', 'Alimentation', 'Utilisation', 'Restitution', 'Commentaire Manager', 'Commentaire DRH', 'Etat', 'Action']}" :entities="cets">
+						<twig:block name="table_content">
+							<twig:TableExt:DashboardTable :entity="entity"/>
+						</twig:block>
+					</twig:Table>
+				</twig:block>
+			</twig:Accordion>
+		{% endif %}
+		{% if teletravail_form is not empty %}
+			<twig:Accordion id="teletravail-accordion" title="Demande de télétravail">
+				<twig:block name="content">
+					<twig:Table id="dashboardTeletravailTable" :head="{col: ['Fait le', 'Année', 'Commentaire Manager', 'Commentaire DRH', 'Etat', 'Action']}" :entities="teletravail_form">
+						<twig:block name="table_content">
+							<twig:TableExt:DashboardTable :entity="entity"/>
+						</twig:block>
+					</twig:Table>
+				</twig:block>
+			</twig:Accordion>
+		{% endif %}
+		{% if astreintes is not empty %}
+			<twig:Accordion id="astreinte-accordion" title="Demande d'opérations">
+				<twig:block name="content">
+					<twig:Table id="dashboardAstreinteTable" :head="{col: ['Fait le', 'Date de début', 'Date de fin', 'Etat','Action']}" :entities="astreintes">
+						<twig:block name="table_content">
+							<twig:TableExt:DashboardTable :entity="entity"/>
+						</twig:block>
+					</twig:Table>
+				</twig:block>
+			</twig:Accordion>
+		{% endif %}
+		{% if retours_sur_site is not empty %}
+			<twig:Accordion id="retour-sur-site-accordion" title="Demande de retour sur site">
+				<twig:block name="content">
+					<twig:Table id="indexTable" :head="{col: ['Fait le', 'Date de fin de télétravail', 'Date de fin', 'Etat','Action']}" :entities="retours_sur_site">
+						<twig:block name="table_content">
+							<twig:TableExt:DashboardTable :entity="entity"/>
+						</twig:block>
+					</twig:Table>
+				</twig:block>
+			</twig:Accordion>
+		{% endif %}
+		<p class="process-title validated">Procédures terminées :</p>
+		{% if validated_cets is not empty %}
+			<twig:Accordion id="cet-accordion" title="Demande de CET">
+				<twig:block name="content">
+					<twig:Table id="dashboardValitedCetTable" :head="{col: ['Fait le', 'Alimentation', 'Utilisation', 'Restitution', 'Commentaire Manager', 'Commentaire DRH', 'Etat', 'Action']}" :entities="validated_cets">
+						<twig:block name="table_content">
+							<twig:TableExt:DashboardTable :entity="entity"/>
+						</twig:block>
+					</twig:Table>
+				</twig:block>
+			</twig:Accordion>
+		{% endif %}
+		{% if validated_teletravail_forms is not empty %}
+			<twig:Accordion id="teletravail-accordion" title="Demande de télétravail">
+				<twig:block name="content">
+					<twig:Table id="dashboardValitedTeletravailTable" :head="{col: ['Fait le', 'Année', 'Commentaire Manager', 'Commentaire DRH', 'Etat', 'Action']}" :entities="validated_teletravail_forms">
+						<twig:block name="table_content">
+							<twig:TableExt:DashboardTable :entity="entity"/>
+						</twig:block>
+					</twig:Table>
+				</twig:block>
+			</twig:Accordion>
+		{% endif %}
+		{% if validated_astreintes is not empty %}
+			<twig:Accordion id="astreinte-accordion" title="Demande d'opérations">
+				<twig:block name="content">
+					<twig:Table id="dashboardValitedAstreinteTable" :head="{col: ['Fait le', 'Date de début', 'Date de fin', 'Etat','Action']}" :entities="validated_astreintes">
+						<twig:block name="table_content">
+							<twig:TableExt:DashboardTable :entity="entity"/>
+						</twig:block>
+					</twig:Table>
+				</twig:block>
+			</twig:Accordion>
+		{% endif %}
+		{% if retours_sur_site is not empty %}
+			<twig:Accordion id="retour-sur-site-accordion" title="Demande de retour sur site">
+				<twig:block name="content">
+					<twig:Table id="indexTable" :head="{col: ['Fait le', 'Date de fin de télétravail', 'Date de fin', 'Etat','Action']}" :entities="validated_retours_sur_site">
+						<twig:block name="table_content">
+							<twig:TableExt:DashboardTable :entity="entity"/>
+						</twig:block>
+					</twig:Table>
+				</twig:block>
+			</twig:Accordion>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

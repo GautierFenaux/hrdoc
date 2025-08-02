@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block title %}Nouvelle demande d'opérations{% endblock %}{% block body %}
+	<h1>Modifier la demande d'opérations</h1>
+	<twig:FormWrapper:FormWrapper>
+		<twig:block name="form_content">
+			{{ include('collaborator/astreinte/_form_collaborator.html.twig', {'button_label': 'Signer'}) }}
+		</twig:block>
+	</twig:FormWrapper:FormWrapper>
+{% endblock %}

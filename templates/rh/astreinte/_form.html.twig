@@ -1,0 +1,83 @@
+{{ form_start(form) }}
+{% if astreinte.state is same as 'validé-manager-postop' %}
+	<h4>Demande d'opérations concernant
+		{{form.vars.data.user.name}}
+		{{form.vars.data.user.surName}}
+	</h4>
+
+	<br>
+	<p>{{ form.vars.data.manager.name }}
+		a validé les temps post opérations du
+		{{ date(astreinte.debutAstreinte)|date('d/m/Y') }}
+		au
+		{{ date(astreinte.finAstreinte)|date('d/m/Y') }}
+	</p>
+	<div class="mt-1">
+		Type d'opération :
+		{% if astreinte.astreinte  %}
+			<strong>astreinte</strong>
+		{% else %}
+			<strong>jour travaillé</strong>
+		{% endif %}
+	</div>
+	<div class="mt-1">
+		Forfait du collaborateur :
+		<strong>{{ astreinte.user.forfaitHeure ? 'forfait heure' : 'forfait jour' }}</strong>
+	</div>
+	<table class="my-1"id="operationRhTable">
+		<thead>
+			<tr>
+				<th>Journée</th>
+				<th>Plage Horaire</th>
+				<th>Temps opération</th>
+				<th>Temps déjeuner</th>
+				<th>Temps intervention jour</th>
+				<th>Temps intervention nuit</th>
+				<th>
+					{% if astreinte.astreinte %}
+						{% if astreinte.user.forfaitHeure %}
+							Temps majoré
+						{% else %}
+							Temps récupération
+						{% endif %}
+					{% endif %}
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for key, item in astreinte.plageHoraire %}
+				<tr>
+					<td>{{format_date(key)}}</td>
+					<td>{{item}}</td>
+					<td>{{astreinte.tempsOperation[key]}}</td>
+					<td>{{astreinte.tempsDejeuner[key]}}</td>
+					<td>{{astreinte.tempsInterventionJour[key]}}h</td>
+					<td>{{astreinte.tempsInterventionNuit[key]}}h</td>
+					{% if astreinte.astreinte %}
+						<td>{{ form_widget((form.children)['increased_'~loop.index0]) }}</td>
+					{% endif %}
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<div class="flex mb-1 time-modification-wrapper">{{ form_label(form.timeModification) }}{{ form_widget(form.timeModification, {'attr' : {'class' : 'ml-1'}}) }}</div>
+	<div class="align-center hidden-field pattern mt-1">{{ form_label(form.motifRefusRh) }}{{ form_widget(form.motifRefusRh, { 'attr' : {'class':'ml-1'}}) }}</div>
+	<div class="flex mt-1 valued-time-wrapper">Ajouter le temps valorisé :{{ form_label(form.tempsValorise) }}{{ form_widget(form.tempsValorise) }}<span>
+			{% if astreinte.user.forfaitHeure %}
+				heures
+			{% else %}
+				jours
+			{% endif %}
+		</span>
+	</div>
+{% else %}
+	<h4>Demande d'opérations concernant{{form.vars.data.user.name}}{{form.vars.data.user.surName}}</h4><br><p>{{ form.vars.data.manager.name }}demande une période d'opérations du{{ date(astreinte.debutAstreinte)|date('d/m/Y') }}au{{ date(astreinte.finAstreinte)|date('d/m/Y') }}pour la raison suivante :<br></p>
+	<p>
+		<span style="margin-right : 0.5rem">-</span>
+		{{ astreinte.motif }}</p>
+</p>
+<div>
+	<div class="flex mt-1">{{ form_label(form.isOkRh) }}{{ form_widget(form.isOkRh) }}</div>
+	<div class="align-center hidden-field pattern mt-1">{{ form_label(form.motifRefusRh) }}{{ form_widget(form.motifRefusRh, { 'attr' : {'class':'ml-1'}}) }}</div>
+</div>{% endif %}<button class="btn validation">{{ button_label|default('Valider') }}</button>{{ form_end(form) }}{% block javascripts %}
+<script type="module" src="{{ asset('js/toggleHiddenField.js') }}"></script>{% endblock %}

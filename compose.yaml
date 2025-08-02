@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - WEB_DOCUMENT_ROOT=/app/public
+    volumes:
+      - ./:/app:cached
+    ports:
+      - "443:443"
+      - "80:80"
+
+  database:
+    image: mysql:8.0
+    volumes:
+      - ./infra/data02/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 81:80
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      PMA_HOST: database
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - 1080:1080

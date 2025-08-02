@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+		<style>
+			* {
+				margin: 0
+			}
+			body {
+				font-family: 'Arimo';
+				font-size: 12px
+			}
+
+			.wrapper {
+				padding: 50px;
+				color: #1f2b51
+			}
+
+			.margin_bottom {
+				margin-bottom: 25px;
+			}
+
+			.margin_tb {
+				margin: 25px 0;
+			}
+
+			.padding {
+				padding: 5px
+			}
+
+			.background_color_title {
+				background-color: #00b2b9;
+				color: white;
+			}
+
+			h1 {
+				text-align: center;
+				margin: 15px 0;
+			}
+
+			td {
+				vertical-align: top;
+			}
+
+			.background-color-table {
+				background-color: #f1f9f5
+			}
+
+			.table_versement {
+				width: 100%;
+			}
+
+			.table_versement thead tr th {
+				padding: 10px;
+			}
+
+			.table_versement tbody tr td {
+				border-bottom: 4px solid #f1f9f5;
+				border-right: 4px solid #f1f9f5;
+				text-align: center;
+				padding: 10px;
+			}
+
+			.table_versement tbody tr td:first-child {
+				border-left: 4px solid #f1f9f5;
+			}
+
+			h4 {
+				background-color: #02a0a5;
+				padding: 10px;
+				margin-bottom: 5px;
+				color: white;
+			}
+			p {
+				padding: 15px 15px 30px 10px
+			}
+
+			.border-page {
+				height: 10px;
+				width: 100%;
+				background-color: #9ED5C0;
+			}
+			#endingTable > tbody > tr > td:first-child {
+				border: 5px solid #f1f9f5;
+				padding: 15px;
+			}
+
+			#secondEndingtable {
+				border: 5px solid #f1f9f5;
+				padding: 15px;
+			}
+
+			.absolute {
+				position: absolute;
+				bottom: 0
+			}
+
+			.tangerine {
+				font-family: "Tangerine", cursive;
+				font-weight: 400;
+				font-style: normal;
+				font-size: 30px;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+
+		<div class="border-page"></div>
+		<div class="wrapper">
+			<div style="width: 100%">
+				<img src="{{ logo }}" alt="" style="width:200px ; height:95px"/>
+			</div>
+
+			<h1>Demande d'alimentation
+				<br>
+				d'un compte épargne-temps</h1>
+
+			<table class="margin_bottom" style="width:100%; background-color: #f1f9f5; padding: 15px">
+				<tbody>
+					<tr>
+						<td class="padding">Direction :
+							{{ cet.user.departement }}</td>
+					</tr>
+					<tr>
+						<td class="padding">Nom :
+							{{ cet.user.surName }}</td>
+						<td class="padding">Prénom :
+							{{ cet.user.name }}</td>
+					</tr>
+					<tr>
+						<td class="padding">Fonction exercées :
+							{{ cet.user.metier }}</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h4>Modalités d'utilisation du CET sous forme monétaire</h4>
+
+			<p>Le Compte Epargne Temps, (CET), a pour finalité principale de développer l'épargne de droits que les salariés acquièrent en temps de repos ou en majoration de salaire, en vue de permettre d'indemniser des congés spécifiques de fin de carrière, pour convenance personnelle, un passage à temps partiel ou des congés légaux non rémunérés.
+			Il permet également aux salariés de se constituer une épargne en argent, d'alimenter, le cas échéant, un plan d'épargne, ou de compléter leur rémunération.
+			Les présentes dispositions s'appliquent à l'ensemble du personnel salarié de l'entreprise ayant au moins un (1) an d'ancienneté.
+			</p>
+
+
+			<h4>Droits pour lesquels le dépôt sur CET est demandé</h4>
+			<p>Seuls les droits à congés payés peuvent faire l'objet d'un dépôt sur le compte épargne temps du salarié dans les conditions et limites visées ci-après.</p>
+
+			<h4>Droits pour les quels le dépôt sur CET est demandé</h4>
+			<p>Demande de versement des jours de congés non pris sur le compte épargne-temps sur l'année de référence.</p>
+
+			<table cellspacing="0" class="table_versement">
+				<thead class="background-color-table">
+					<tr>
+						<th>
+							Droit à congés cumulé (en jours)
+						</th>
+						<th>
+							Nombre de jours de congés utilisés
+						</th>
+						<th>
+							Solde de jours de congés non pris
+						</th>
+						<th>
+							Nombre de jours de congés dont le versement au CET est demandé
+						</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>
+							{{ cet.droitCongesCumule }}
+						</td>
+						<td>
+							{{ cet.nbJoursCongesUtilises }}
+						</td>
+						<td>
+							{{ cet.soldeJoursCongesNonPris }}
+						</td>
+						<td>
+							{{ cet.nbJoursVersement }}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+
+			<table id="endingTable" style="width: 100%; padding-top: 55px ">
+				<tbody>
+					<tr>
+						<td>
+							<table class="endingTable1">
+								<thead>
+									<tr>
+										<th>
+											Visa du responsable hiérarchique :
+										</th>
+										<th></th>
+										<th>
+											Visa de la DRH :
+										</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td>
+											{{ cet.avisSupHierarchique ? 'favorable' : 'défavorable' }}
+											{{ cet.commentaireSupHierarchique }}
+										</td>
+										<td></td>
+										<td>
+											{{ cet.avisDrh ? 'favorable' : 'défavorable' }}
+											{{ cet.commentaireDrh }}
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+
+						<td> </td>
+						<td>
+						<table id="secondEndingtable">
+							<tbody>
+								<tr>
+									<td>
+										Date :
+										{{ date(cet.createdAt)|date('d/m/Y') }}
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Signature :
+									</td>
+								</tr>
+								<tr>
+									<td class="tangerine">
+											{{signature}}
+										</td>
+								</tr>
+							</tbody>
+						</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+		<div class="border-page absolute"></div>
+
+	</body>
+</html>

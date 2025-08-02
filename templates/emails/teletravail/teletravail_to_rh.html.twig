@@ -1,0 +1,16 @@
+Bonjour,<br><br>
+
+
+{{ form.manager.name }} vient de 
+
+{% if form.state == 'refus-manager' %}
+    refuser
+    {% else %}
+    valider 
+{% endif %}
+
+la demande de {{ form.user.name }} {{ form.user.surName }}. <br><br>
+Vous pouvez la consulter en vous rendant sur votre <a href="{{ target_url }}"> espace rh </a>.<br><br>
+
+Cordialement,
+

@@ -1,0 +1,59 @@
+Bonjour
+{{ form.user.name }},<br><br>
+
+
+{% if form.state == 'refus-rh'%}
+
+	<p>
+
+		Votre demande de télétravail a été refusée.
+		<br>
+		Veuillez vous référez au commentaire ci-dessous pour en connaître la raison :
+		<br><br>
+		<strong>{{ form.commentaireDRH }}
+		</strong>
+		<br><br>
+
+		Afin de terminer la procédure concernant votre demande de télétravail, 
+		    il est nécessaire de la signer via votre espace collaborateur
+		<a href="{{ target_url }}">
+			Hrdoc.</a><br><br>
+		<p/>
+	{% endif %}
+
+
+	{% if form.state == 'validé' %}
+		<p>
+			Votre demande de passage en télétravail a bien été validée.
+			<br>
+			Elle sera effective à partir du :
+			{{ date(form.aCompterDu)|date('d/m/Y') }}<br><br>
+			Ci joint le récapitulatif sous format pdf.<br><br>
+		</p>
+
+
+	{% endif %}
+
+	{% if form.state == 'validé-rh' %}
+
+		<p>
+			Nous vous informons que votre demande de télétravail régulier a été validée.<br>
+			Afin de valider définitivement votre demande de télétravail, il est nécessaire de la signer en vous rendant sur votre espace
+			<a href="{{ target_url }}">
+				Hrdoc.</a><br><br>
+
+			La DRH reste à votre disposition pour toutes informations complémentaires.<br><br>
+		</p>
+
+	{% endif %}
+
+
+	{% if form.state == 'refus'%}
+
+		Votre demande de passage en télétravail a été refusée.<br>
+		Pour tout renseignement veuillez vous adresser à l'adresse : teletravail@hrdoc.fr.<br><br>
+		Ci joint le récapitulatif sous format pdf.<br><br>
+
+	{% endif %}
+
+	Cordialement
