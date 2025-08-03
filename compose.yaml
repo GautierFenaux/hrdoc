@@ -10,8 +10,8 @@ services:
     volumes:
       - ./:/app:cached
     ports:
-      - "443:443"
-      - "80:80"
+      - "127.0.0.1:80:80"
+      - "127.0.0.1:443:443"
 
   database:
     image: mysql:8.0
@@ -20,12 +20,12 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
     ports:
-      - "3306:3306"
+      - "127.0.0.1:3306:3306"
 
   phpmyadmin:
     image: phpmyadmin
     ports:
-      - 81:80
+      - "127.0.0.1:81:80"
     environment:
       MYSQL_ROOT_PASSWORD: password
       PMA_HOST: database
@@ -33,4 +33,4 @@ services:
   mailcatcher:
     image: schickling/mailcatcher
     ports:
-      - 1080:1080
+      - "127.0.0.1:1080:1080"
