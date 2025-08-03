@@ -8,7 +8,7 @@ use App\Enum\StateEnum;
 use App\Service\GetUserService;
 use App\Service\SendMailService;
 use App\Repository\CetRepository;
-use App\Service\CreatePdfService;
+use App\Service\PdfService;
 use Symfony\UX\Turbo\TurboBundle;
 use App\Repository\UserRepository;
 use App\Service\UrlGeneratorService;
@@ -25,7 +25,7 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 #[Route('/rh/cet')]
 class CetRhController extends AbstractController
 {
-    public function __construct(private UrlGeneratorService $urlGeneratorService, private SendMailService $sendMailService, private RequestStack $requestStack, private GetUserService $getUserService, private ParameterBagInterface $parameterBag, private MailerInterface $mailer, private EntityManagerInterface $entityManager, private CreatePdfService $createPdfService) {}
+    public function __construct(private UrlGeneratorService $urlGeneratorService, private SendMailService $sendMailService, private RequestStack $requestStack, private GetUserService $getUserService, private ParameterBagInterface $parameterBag, private MailerInterface $mailer, private EntityManagerInterface $entityManager, private PdfService $pdfService) {}
 
     #[Route('/', name: 'app_cet_rh_index', methods: ['GET'])]
     public function index(CetRepository $cetRepository): Response
@@ -71,7 +71,7 @@ class CetRhController extends AbstractController
         if ($request->query->get('type_of_validation') === 'refuse') {
             $cet->setState(StateEnum::REFUSED_HR);
             $cet->setAvisDrh(false);
-            $pdfPath = $this->createPdfService->create('cet', $html);
+            $pdfPath = $this->pdfService->create('cet', $html);
             $cet->setLocation($pdfPath);
             $this->sendMailService->sendToCollaborator($cet, $this->urlGeneratorService->generate('app_dashboard'), $pdfPath);
             $toastMessage .= ' refusée.';
@@ -87,7 +87,7 @@ class CetRhController extends AbstractController
                 $cet->setSolde($cet->getNbJours() - $cet->getNbJoursADebiter());
             }
             $toastMessage .= ' validée.';
-            $pdfPath = $this->createPdfService->create('cet', $html);
+            $pdfPath = $this->pdfService->create('cet', $html);
             $cet->setLocation($pdfPath);
             $this->sendMailService->sendToCollaborator($cet, $this->urlGeneratorService->generate('app_dashboard'), $pdfPath);
         }

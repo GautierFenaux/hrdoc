@@ -1833,7 +1833,7 @@ table.table-style tbody tr:last-child td {
   transition: background-color 0.7s ease, color 0.7s, box-shadow 0.5s ease, max-height 0.6s ease;
   max-height: 43.59px;
   border: 1px solid transparent;
-
+  cursor: pointer;
 }
 
 
