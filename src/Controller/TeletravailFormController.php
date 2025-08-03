@@ -11,7 +11,7 @@ use App\Entity\TeletravailForm;
 use App\Service\GetUserService;
 use App\Service\SendMailService;
 use App\Form\TeletravailFormType;
-use App\Service\CreatePdfService;
+use App\Service\PdfService;
 use App\Repository\UserRepository;
 use App\Service\DownloadPdfService;
 use App\Service\UrlGeneratorService;
@@ -38,7 +38,7 @@ class TeletravailFormController extends AbstractController
         private ParameterBagInterface $parameterBag,
         private GetUserService $getUserService,
         private DownloadPdfService $downloadPdfService,
-        private CreatePdfService $createPdfService,
+        private PdfService $pdfService,
     ) {
     }
 
@@ -133,14 +133,14 @@ class TeletravailFormController extends AbstractController
                     'signature_manager' =>   $managerName[0] .' '. ucfirst(strtolower($managerName[1])),
                     'drh' =>  $userRepository->findOneBy(['email' => $managerRepository->findOneBy(['departement' =>'DRH - Direction Ressources Humaines'])->getEmail()]),
                 ]);
-                $tmpTeletravailFormPdfPath = $this->createPdfService->create('teletravail_form_tmp', $html);
+                $tmpTeletravailFormPdfPath = $this->pdfService->create('teletravail_form_tmp', $html);
                 $logoBase64 = base64_encode(file_get_contents($parameterBag->get('kernel.project_dir') . '/public/assets/images/hrdoc_logo.png'));
                 $htmlAttestation = $this->renderView('_pdf/attestation_honneur_pdf.html.twig', [
                     'teletravail_form' => $teletravailForm,
                     'user' => $user,
                     'logo' => 'data:png;base64,' . $logoBase64,
                 ]);
-                $tmpAttestationPdfPath = $this->createPdfService->create('attestation_tmp', $htmlAttestation);
+                $tmpAttestationPdfPath = $this->pdfService->create('attestation_tmp', $htmlAttestation);
                 $attestationAssurancePath =  $teletravailForm->getAttestationAssurance();
                 $teletravailFormPdfPath = $this->parameterBag->get('kernel.project_dir') . '/upload/teletravailforms_pdf/' . $tmpTeletravailFormPdfPath[1];
                 // Concatène les pdf en utilisant GhostScript, en premier fichier sur lequel les données vont être concaténées. Ensuite tous les fichiers qu'on souhaite concaténer.
