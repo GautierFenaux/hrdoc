@@ -65,6 +65,7 @@ class TeletravailFormRhController extends AbstractController
     #[Route('/{id}/show', name: 'app_teletravailform_rh_show', methods: ['GET'])]
     public function show(Request $request, TeletravailForm $teletravailForm): Response
     {
+        dd($form);
         $form = $this->createForm(TeletravailFormType::class, $teletravailForm, [
             'user_roles'  => $teletravailForm->getUser()->getRoles(),
             'request' => $request,

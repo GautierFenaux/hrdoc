@@ -2,10 +2,10 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<meta
-		http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 		<title>
-			{% block title %}Bienvenue !{% endblock %}
+			{% block title %}Bienvenue !
+			{% endblock %}
 		</title>
 		{% block importmap %}
 			{{ importmap('app') }}
@@ -14,9 +14,34 @@
 	<body>
 		<div class="container">
 			{{ include('./components/sidenav.html.twig') }}
-			<div class="content-wrapper"> {% block body %}{% endblock %}</div>
-		</div>
-	</body>
-</html>
+			<div class="content-wrapper"> {% block body %}{% endblock %}
+				</div>
+			</div>
 
+			<twig:Modal>
 
+				<turbo-frame
+					id="modal" data-modal-target="dynamicContent" data-action="turbo:before-fetch-request->modal#showLoading">
+					{{ include('_frameSuccessStreams.html.twig', { frame: 'modal' }) }}
+				</turbo-frame>
+
+				<twig:block name="loading_template">
+					<div class="bg-cover rounded-lg p-8">
+						<div class="space-y-2">
+							<div class="h-4 bg-gray rounded w-3/4 animate-pulse"></div>
+							<div class="h-4 bg-gray rounded animate-pulse"></div>
+							<div class="h-4 bg-gray rounded animate-pulse"></div>
+							<div class="h-4"></div>
+							<div class="h-4 bg-gray rounded animate-pulse"></div>
+							<div class="h-4 bg-gray rounded w-1/2 animate-pulse"></div>
+							<div class="h-4 bg-gray rounded w-3/4 animate-pulse"></div>
+							<div class="h-4"></div>
+							<div class="h-4 bg-gray rounded w-1/2 animate-pulse"></div>
+						</div>
+					</div>
+				</twig:block>
+
+			</twig:Modal>
+		</body>
+	</html>
+</body></html>

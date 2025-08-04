@@ -35,7 +35,7 @@
 		{{ _self.get_icon(dataRequestType, role) }}
 	</a>
 {% else %}
-		<a href="{{ this.url() }}" class="btn-table-form cet-links link-icon cet-links-dashboard tooltip {{ classToAdd }}" {{ isTargetBlank ? "target='_blank'" : ''}} data-controller="link" data-link-id-value="{{ entity.id is defined ? entity.id : '' }}" data-action="{{dataAction}}" data-request-type={{dataRequestType}} >
+		<a href="{{ this.url() }}" class="btn-table-form cet-links link-icon cet-links-dashboard tooltip {{ classToAdd }}" {{ isTargetBlank ? "target='_blank'" : ''}} data-controller="link" data-link-id-value="{{ entity.id is defined ? entity.id : '' }}" data-action="{{dataAction}}" data-request-type={{dataRequestType}} data-turbo-frame="modal">
 		{{ _self.get_icon(dataRequestType, role) }}
 	</a>
 {% endif %}

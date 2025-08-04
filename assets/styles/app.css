@@ -1962,11 +1962,20 @@ h1.title {
   text-align: left;
 }
 
-<<<<<<< HEAD:public/assets/styles/styles.css
 #operationRhTable thead tr th{
   text-align: left;
-=======
+}
+
 #chartWrapper {
   width: 70%;
->>>>>>> refacto-asset-mapper:assets/styles/app.css
+}
+
+.modal-dialog {
+  position: absolute;
+  inset: 0;
+  background-color: red;
+}
+
+.modal-dialog-content {
+  width: 100%;
 }
