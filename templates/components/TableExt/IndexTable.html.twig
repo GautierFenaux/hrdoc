@@ -43,8 +43,8 @@
 			<td>{{ entity.avisDRH is same as(true) ? 'Favorable' : (entity.avisDRH is same as(false) ? 'Défavorable' : 'En attente') }}</td>
 			<td class="state">{{ entity.state.value }}</td>
 			<td class="flex flex-between">
-				<twig:Link :entity="entity" action="show" dataRequestType="show"/>
-				{% if (entity.state.value == 'validé-manager' or entity.state.value == 'refus-manager' or entity.state.value == 'attente-rh' )  %}
+				<twig:Link :role="role" :entity="entity" action="show" dataRequestType="show"/>
+				{% if (entity.state.value == 'validé-manager' or entity.state.value == 'refus-manager' or entity.state.value == 'attente-rh')  %}
 					<twig:Link :entity="entity" action="edit" :role="role" dataRequestType="edit"/>
 					{# ajouter turbo  stream pour lors de la requête ajax #}
 					<twig:Link :entity="entity" action="reopen" :role="role" dataRequestType="reopen" />

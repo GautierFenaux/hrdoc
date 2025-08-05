@@ -21,7 +21,9 @@
 			<twig:Modal>
 
 				<turbo-frame
-					id="modal" data-modal-target="dynamicContent" data-action="turbo:before-fetch-request->modal#showLoading">
+					id="modal" 
+					data-modal-target="dynamicContent" data-action="turbo:before-fetch-request->modal#showLoading"
+					>
 					{{ include('_frameSuccessStreams.html.twig', { frame: 'modal' }) }}
 				</turbo-frame>
 
