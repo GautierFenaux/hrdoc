@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Tableau de bord manager
-{% endblock %}
+{% block title %}Tableau de bord manager{% endblock %}
 {% block body %}
 	<div class="banner-wrapper">
 		<img src="{{ asset('images/hrdoc_logo.png') }}" alt="">
@@ -45,4 +44,6 @@
 			</div>
 		</div>	
 	</div>
+	{{ component('RandomNumber', { max: 500 }) }}
+
 {% endblock %}

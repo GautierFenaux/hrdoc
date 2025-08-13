@@ -44,6 +44,7 @@
         "symfony/translation": "6.4.*",
         "symfony/twig-bundle": "6.4.*",
         "symfony/ux-chartjs": "*",
+        "symfony/ux-live-component": "*",
         "symfony/ux-turbo": "*",
         "symfony/ux-twig-component": "^2.27",
         "symfony/validator": "6.4.*",

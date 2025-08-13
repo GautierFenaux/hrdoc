@@ -2,9 +2,9 @@
 {% block title %}Nouvelle demande télétravail{% endblock %}
 {% block body %}
 	<h1> Demande de passage en télétravail régulier</h1>
-	<twig:FormWrapper:FormWrapper dataController="teleworking">
+	<twig:Form:FormWrapper dataController="teleworking">
 		<twig:block name="form_content">
 			{{ include('collaborator/teletravail_form/_form.html.twig') }}
 		</twig:block>
-	</twig:FormWrapper:FormWrapper>
+	</twig:Form:FormWrapper>
 {% endblock %}

@@ -3,9 +3,9 @@
 {% endblock %}
 {% block body %}
 	<h1>Validation de la demande retour sur site</h1>
-	<twig:FormWrapper:FormWrapper>
+	<twig:Form:FormWrapper>
 		<twig:block name="form_content">
 			{{ include('retour_sur_site/_form_final.html.twig', {'button_label': 'Signer'}) }}
 		</twig:block>
-	</twig:FormWrapper:FormWrapper>
+	</twig:Form:FormWrapper>
 {% endblock %}
