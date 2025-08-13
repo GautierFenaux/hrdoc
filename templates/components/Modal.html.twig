@@ -1,0 +1,17 @@
+<div {{ attributes.defaults({ 'data-controller': 'modal', 'data-action': 'turbo:before-cache@window->modal#close' } ) }}>
+
+	<dialog class="modal-dialog" 
+	        data-modal-target="dialog" data-action="close->modal#close click->modal#clickOutside">
+		<div class="modal-dialog-content" data-modal-target="dialog" data-action="close->modal#close click->modal#clickOutside">
+			<div class="flex grow">
+				<div class="grow overflow-auto p-1"> {% block content %}{% endblock %}</div>
+			</div>
+		</div>
+	</dialog>
+
+	<div>
+		{% if block('loading_template') %}
+			<template data-modal-target="loadingContent">{% block loading_template %}{% endblock %}</template>
+		{% endif %}
+	</div>
+</div>

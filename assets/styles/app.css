@@ -311,6 +311,7 @@ ul p {
 .mb-1 {
   margin-bottom: 1rem;
 }
+
 .ml-1 {
   margin-left: 1rem;
 }
@@ -320,7 +321,7 @@ ul p {
 }
 
 .text-align-left {
-  text-align: left!important;
+  text-align: left !important;
 }
 
 /* <========================================================================================> */
@@ -1529,7 +1530,7 @@ div.dt-container .dt-paging .dt-paging-button:hover {
 
 #indexTableUtilisation,
 #indexTableRestitution {
-  width: 100%!important;
+  width: 100% !important;
 }
 
 #indexTableRestitution tbody tr td,
@@ -1549,7 +1550,7 @@ div.dt-container .dt-paging .dt-paging-button:hover {
 }
 
 table.dataTable th.dt-type-numeric {
-  text-align: left!important;
+  text-align: left !important;
 }
 
 .dashboard-menu table thead tr th {
@@ -1623,8 +1624,7 @@ table.table-style tbody tr:last-child td {
 #cet-accordion table thead tr th:last-child,
 #teletravail-accordion table thead tr th:last-child,
 #retour-sur-site-accordion table thead tr th:last-child,
-#astreinte-accordion table thead tr th:last-child
-{
+#astreinte-accordion table thead tr th:last-child {
   text-align: center !important;
 }
 
@@ -1799,8 +1799,7 @@ table.table-style tbody tr:last-child td {
   font-size: 15px;
 }
 
-.tooltip .tooltiptext::after
-{
+.tooltip .tooltiptext::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -1812,11 +1811,11 @@ table.table-style tbody tr:last-child td {
 }
 
 .tooltip.show-tooltip .tooltiptext,
-.tooltip.show-tooltip .tooltiptext-pattern
-{
+.tooltip.show-tooltip .tooltiptext-pattern {
   visibility: visible;
   opacity: 1;
 }
+
 /* <==========================================================================================> */
 /* <=========================================================================================> */
 /* <====================================> ACCORDION <=======================================> */
@@ -1914,6 +1913,7 @@ h1.title {
     line-height: 1.4;
 
   }
+
   .logo {
     height: 169px;
   }
@@ -1945,13 +1945,13 @@ h1.title {
 }
 
 .link-icon {
-    display:inline-block;
-    font-size: 20px;
-    line-height: 30px;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    vertical-align: bottom;
+  display: inline-block;
+  font-size: 20px;
+  line-height: 30px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  vertical-align: bottom;
 }
 
 #astreintePostOpTable {
@@ -1962,11 +1962,20 @@ h1.title {
   text-align: left;
 }
 
-<<<<<<< HEAD:public/assets/styles/styles.css
-#operationRhTable thead tr th{
+#operationRhTable thead tr th {
   text-align: left;
-=======
+}
+
 #chartWrapper {
   width: 70%;
->>>>>>> refacto-asset-mapper:assets/styles/app.css
+}
+
+.modal-dialog {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  border-radius: 0.8rem;
+  min-width: 1000px;
 }
