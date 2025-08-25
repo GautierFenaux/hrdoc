@@ -1,0 +1,14 @@
+ <div {{ attributes }}>
+
+	{{ form_start(form, {
+		attr: {
+			'data-action': 'live#action:prevent',
+			'data-live-action-param': 'prevent|files|save',
+			'novalidate': 'novalidate'
+		}
+	}) }}
+
+
+		<button>{{ button_label|default('Ajouter') }}</button>
+</div> 
+

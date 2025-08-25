@@ -2,9 +2,9 @@
 {% block title %}opérations{% endblock %}
 {% block body %}
 	<h1>Modifier la demande d'opérations</h1>
-	<twig:FormWrapper:FormWrapper>
+	<twig:Form:FormWrapper>
 		<twig:block name="form_content">
 			{{ include('rh/astreinte/_form.html.twig', {'button_label': 'Signer'}) }}
 		</twig:block>
-	</twig:FormWrapper:FormWrapper>
+	</twig:Form:FormWrapper>
 {% endblock %}

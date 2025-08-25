@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Twig\Components\FormWrapper;
+namespace App\Twig\Components\Form;
 
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 

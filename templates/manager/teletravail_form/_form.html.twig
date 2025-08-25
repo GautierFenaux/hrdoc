@@ -1,4 +1,11 @@
-{{ form_start(form, {'attr': {'data-controller':'manager--teleworking', 'data-manager--teleworking-target':'form'}}) }}
+{# <twig:Form:LiveForm /> #}
+<twig:Form:LiveForm :form="form" :initialFormData="teletravail_form" />
+
+    {# {{ component('Form:LiveForm', {
+        initialFormData: form,
+    }) }} #}
+
+{# {{ form_start(form, {'attr': {'data-controller':'manager--teleworking', 'data-manager--teleworking-target':'form'}}) }}
 <div class="form-step form-step-active" data-manager--teleworking-target="formStep">
 	<h2>Récapitulatif de la demande</h2>
 

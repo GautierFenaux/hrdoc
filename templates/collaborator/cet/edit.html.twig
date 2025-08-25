@@ -1,13 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'modalBase.html.twig' %}
 
 {% block title %}Modification CET
 {% endblock %}
 
 {% block body %}
 	<h1>Modification du CET</h1>
-	<twig:FormWrapper:FormWrapper>
+	<twig:Form:FormWrapper>
 		<twig:block name="form_content">
 			{{ include('collaborator/cet/_form.html.twig') }}
 		</twig:block>
-	</twig:FormWrapper:FormWrapper>
+	</twig:Form:FormWrapper>
 {% endblock %}

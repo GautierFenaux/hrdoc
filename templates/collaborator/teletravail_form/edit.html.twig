@@ -2,7 +2,7 @@
 {% block title %}Modification formulaire télétravail{% endblock %}
 {% block body %}
 	<h1>Modifier ma demande de télétravail</h1>
-	<twig:FormWrapper:FormWrapper>
+	<twig:Form:FormWrapper>
 		<twig:block name="form_content">
 			{% if teletravail_form.state.value == 'réouvert' %}
 				{{ include('collaborator/teletravail_form/_form.html.twig') }}
@@ -10,5 +10,5 @@
 				{{ include('collaborator/teletravail_form/_form_final.html.twig') }}
 			{% endif %}
 		</twig:block>
-	</twig:FormWrapper:FormWrapper>
+	</twig:Form:FormWrapper>
 {% endblock %}
