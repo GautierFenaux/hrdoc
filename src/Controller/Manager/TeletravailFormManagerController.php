@@ -48,7 +48,7 @@ class TeletravailFormManagerController extends AbstractController
 
 
     #[Route('/{id}/edit', name: 'app_teletravailform_manager_edit', methods: ['GET', 'POST'])]
-    public function managerEdit(Request $request, TeletravailForm $teletravailForm, EntityManagerInterface $entityManager, UserInterface $user, UserRepository $userReposistory, int $id): Response
+    public function managerEdit(Request $request, TeletravailForm $teletravailForm, EntityManagerInterface $entityManager, UserInterface $user, int $id): Response
     {
         $loggedUser = $this->getUser();
         if (!$loggedUser instanceof User || !in_array('ROLE_MANAGER', $loggedUser->getRoles())) {
@@ -65,7 +65,6 @@ class TeletravailFormManagerController extends AbstractController
         ]);
         
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             if($form['avisManager']->getData() == true) {
                 $teletravailForm->setState(StateEnum::VALITED_MANAGER);

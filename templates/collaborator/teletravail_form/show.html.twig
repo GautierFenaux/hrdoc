@@ -1,8 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'modalBase.html.twig' %}
 {% block title %}Affichage du formulaire de télétravail{% endblock %}
 {% block body %}
 	<h2>Récapitulatif de votre demande de passage en télétravail régulier</h2>
-	<twig:FormWrapper:FormWrapper>
+	<twig:Form:FormWrapper>
 		<twig:block name="form_content">
 			{{ form_start(form) }}
 			<div class="rh-summary">
@@ -90,5 +90,5 @@
 					</div>
 				</div>
 			</twig:block>
-		</twig:FormWrapper:FormWrapper>
+		</twig:Form:FormWrapper>
 	{% endblock %}

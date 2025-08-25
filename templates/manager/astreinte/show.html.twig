@@ -5,7 +5,7 @@
 
 {% block body %}
 	<h1>Récapitulatif de la demande d'opération concernant {{astreinte.user.name}} {{astreinte.user.surName}}</h1>
-	<twig:FormWrapper:FormWrapper>
+	<twig:Form:FormWrapper>
 		<twig:block name="form_content">
 			<div>
 				Motif de la demande :  <br> - <strong>{{astreinte.motif}}</strong>
@@ -44,5 +44,5 @@
 				</table>
 			</div>
 		</twig:block>
-	</twig:FormWrapper:FormWrapper>
+	</twig:Form:FormWrapper>
 {% endblock %}

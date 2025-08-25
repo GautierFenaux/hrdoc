@@ -2,7 +2,7 @@
 {% block title %}Retour sur site{% endblock %}
 {% block body %}
 	<h2>Récapitulatif de la demande de retour sur site</h2>
-	<twig:FormWrapper:FormWrapper>
+	<twig:Form:FormWrapper>
 		<twig:block name="form_content">
 			<h4>Demande faîte par
 				{{ retour_sur_site.manager }}
@@ -72,5 +72,5 @@
 				{% endif %}
 			</div>
 		</twig:block>
-	</twig:FormWrapper:FormWrapper>
+	</twig:Form:FormWrapper>
 {% endblock %}
