@@ -1,7 +1,8 @@
-{# <twig:Form:Form /> #}
+{# <twig:Form:LiveForm /> #}
+<twig:Form:LiveForm :form="form" :initialFormData="teletravail_form" />
 
-    {# {{ component('Form:Form', {
-        initialFormData: teletravail_form,
+    {# {{ component('Form:LiveForm', {
+        initialFormData: form,
     }) }} #}
 
 {# {{ form_start(form, {'attr': {'data-controller':'manager--teleworking', 'data-manager--teleworking-target':'form'}}) }}
@@ -74,4 +75,4 @@
 <button class="btn validate-form validation" data-manager--teleworking-target="signatureButton" data-action='manager--teleworking#submitForm'>{{ button_label|default('Signer') }}</button>
 <input type="button" class="btn btn-prev" value="Précédent" data-manager--teleworking-target="navButton" data-action="click->manager--teleworking#displayStep">
 <input type="button" class="btn btn-next" value="Suivant" data-manager--teleworking-target="navButton" data-action="click->manager--teleworking#displayStep">
-{{ form_end(form) }} #}
+{{ form_end(form) }}
