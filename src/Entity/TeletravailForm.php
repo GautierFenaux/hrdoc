@@ -256,7 +256,7 @@ class TeletravailForm
         return $this->periodeEssai;
     }
 
-    public function setPeriodeEssai(bool $periodeEssai): static
+    public function setPeriodeEssai(?bool $periodeEssai): static
     {
         $this->periodeEssai = $periodeEssai;
 
@@ -268,7 +268,7 @@ class TeletravailForm
         return $this->activiteEligible;
     }
 
-    public function setActiviteEligible(bool $activiteEligible): static
+    public function setActiviteEligible(?bool $activiteEligible): static
     {
         $this->activiteEligible = $activiteEligible;
 
@@ -280,7 +280,7 @@ class TeletravailForm
         return $this->autonomieSuffisante;
     }
 
-    public function setAutonomieSuffisante(bool $autonomieSuffisante): static
+    public function setAutonomieSuffisante(bool|null $autonomieSuffisante): static
     {
         $this->autonomieSuffisante = $autonomieSuffisante;
 
@@ -292,7 +292,7 @@ class TeletravailForm
         return $this->conditionsEligibilites;
     }
 
-    public function setConditionsEligibilites(bool $conditionsEligibilites): static
+    public function setConditionsEligibilites(?bool $conditionsEligibilites): static
     {
         $this->conditionsEligibilites = $conditionsEligibilites;
 
@@ -304,7 +304,7 @@ class TeletravailForm
         return $this->conditionsTechMatAdm;
     }
 
-    public function setConditionsTechMatAdm(?bool $conditionsTechMatAdm): static
+    public function setConditionsTechMatAdm(bool|null $conditionsTechMatAdm): static
     {
         $this->conditionsTechMatAdm = $conditionsTechMatAdm;
 
