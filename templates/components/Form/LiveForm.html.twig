@@ -25,9 +25,6 @@
 	{% if typeOfCollaborator == 'rh' %}
 		{% include "rh/teletravail_form/_form_content.html.twig" with { 'form': form } %}
 	{% else %}
-	<pre>
-		{{ dump('formulaire manager') }}
-	</pre>
 		{% include "manager/teletravail_form/_form_content.html.twig" with { 'form': form } %}
 	{% endif %}
 

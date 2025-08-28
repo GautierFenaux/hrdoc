@@ -8,8 +8,6 @@ use App\Entity\User;
 use App\Enum\StateEnum;
 use App\Entity\TeletravailForm;
 use App\Service\SendMailService;
-use App\Form\TeletravailFormType;
-use App\Repository\UserRepository;
 use App\Service\UrlGeneratorService;
 use App\Repository\ManagerRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,6 +15,7 @@ use App\Repository\TeletravailFormRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\Manager\ManagerTeletravailFormType;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -58,7 +57,7 @@ class TeletravailFormManagerController extends AbstractController
         // Permet de passer l'objet request dans les options du formulaire pour gérer l'affichage des champs en fonction des routes.
         $user =  $this->getUser();
 
-        $form = $this->createForm(TeletravailFormType::class, $teletravailForm, [
+        $form = $this->createForm(ManagerTeletravailFormType::class, $teletravailForm, [
             'user_roles'  => $user->getRoles(),
             'request' => $request,
             'current_user' => $user,
