@@ -32,12 +32,4 @@ export default class extends Controller {
             this.managerCommentTarget.style.height = '55px';
         }
     }
-    submitForm(e) {
-        e.preventDefault();
-        if (!this.formTarget.checkValidity()) {
-            alert('Veuillez remplir l\'ensemble des champs.');
-        } else {
-            this.formTarget.submit()
-        }
-    }
 }

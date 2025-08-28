@@ -1,14 +1,25 @@
- <div {{ attributes }}>
-
-	{{ form_start(form, {
-		attr: {
+<div {{ attributes }}>
+	{% set defaultAttr = {
 			'data-action': 'live#action:prevent',
-			'data-live-action-param': 'prevent|files|save',
+			'data-live-action-param': 'save',
 			'novalidate': 'novalidate'
-		}
-	}) }}
+	} %}
 
+	
+	{% set extraAttr = get_class_name(form.vars.value) == 'teletravailform' 
+    ? {
+        'data-controller': 'manager--teleworking',
+        'data-manager--teleworking-target': 'form'
+      }
+    : {}
+	%}
 
-		<button>{{ button_label|default('Ajouter') }}</button>
-</div> 
+	{% set formAttr = defaultAttr|merge(extraAttr) %}
 
+	{{ form_start(form, {'attr': formAttr}) }} 
+
+	{% include "manager/teletravail_form/_form_content.html.twig" with { 'form': form } %}
+		
+	
+
+{{ form_end(form) }}
