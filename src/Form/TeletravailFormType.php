@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -27,92 +28,112 @@ class TeletravailFormType extends AbstractType
 
         $request = $options['request'];
 
-                $builder
+        $builder
 
-                    ->add('periodeEssai',  ChoiceType::class, [
-                        'choices' => array(
-                            'Oui' => true,
-                            'Non' => false,
-                        ),
-                        'expanded' => true,
-                        'data' => null,
-                        'required' => true,
-                        'label' => 'Période d\'essai en cours : ',
-                        'constraints' => [
-                            new NotBlank([
-                                'message' => 'Veuillez saisir cette donnée.',
-                            ]),
-                        ],
-                    ])
-                    ->add('activiteEligible',  ChoiceType::class, [
-                        'choices' => array(
-                            'Oui' => true,
-                            'Non' => false,
-                        ),
-                        'expanded' => true,
-                        'data' => null,
-                        // 'required' => true,
-                        'label' => 'Activité éligible : '
-                    ])
-                    ->add('autonomieSuffisante',  ChoiceType::class, [
-                        'choices' => array(
-                            'Oui' => true,
-                            'Non' => false,
-                        ),
-                        'expanded' => true,
-                        'data' => null,
-                        // 'required' => true,
-                        'label' => 'Autonomie suffisante : '
-                    ])
-                    ->add('conditionsEligibilites',  ChoiceType::class, [
-                        'choices' => array(
-                            'Oui' => true,
-                            'Non' => false,
-                        ),
-                        'expanded' => true,
-                        'data' => null,
-                        // 'required' => true,
-                        'label' => 'Les conditions d\'éligibilité ? '
-                    ])
-                    ->add('conditionsTechMatAdm',  ChoiceType::class, [
-                        'choices' => array(
-                            'Oui' => true,
-                            'Non' => false,
-                        ),
-                        'expanded' => true,
-                        'data' => null,
-                        // 'required' => true,
-                        'label' => 'Les conditions techniques, matérielles et/ou administrative ?'
-                    ])
-                    ->add('desorganiseService',  ChoiceType::class, [
-                        'choices' => array(
-                            'Oui' => true,
-                            'Non' => false,
-                        ),
-                        'expanded' => true,
-                        'data' => null,
-                        // 'required' => true,
-                        'label' => '
+            ->add('periodeEssai',  ChoiceType::class, [
+                'choices' => array(
+                    'Oui' => true,
+                    'Non' => false,
+                ),
+                'expanded' => true,
+                'data' => null,
+                'required' => true,
+                'label' => 'Période d\'essai en cours : ',
+                'constraints' => [
+                    new NotNull([
+                        'message' => 'Veuillez saisir cette donnée.',
+                    ]),
+                ],
+            ])
+            ->add('activiteEligible',  ChoiceType::class, [
+                'choices' => array(
+                    'Oui' => true,
+                    'Non' => false,
+                ),
+                'expanded' => true,
+                'data' => null,
+                'constraints' => [
+                    new NotNull([
+                        'message' => 'Veuillez saisir cette donnée.',
+                    ]),
+                ],
+                'label' => 'Activité éligible : '
+            ])
+            ->add('autonomieSuffisante',  ChoiceType::class, [
+                'choices' => array(
+                    'Oui' => true,
+                    'Non' => false,
+                ),
+                'expanded' => true,
+                'data' => null,
+                'constraints' => [
+                    new NotNull([
+                        'message' => 'Veuillez saisir cette donnée.',
+                    ]),
+                ],
+                'label' => 'Autonomie suffisante : '
+            ])
+            ->add('conditionsEligibilites',  ChoiceType::class, [
+                'choices' => array(
+                    'Oui' => true,
+                    'Non' => false,
+                ),
+                'expanded' => true,
+                'data' => null,
+                'constraints' => [
+                    new NotNull([
+                        'message' => 'Veuillez saisir cette donnée.',
+                    ]),
+                ],
+                'label' => 'Les conditions d\'éligibilité ? '
+            ])
+            ->add('conditionsTechMatAdm',  ChoiceType::class, [
+                'choices' => array(
+                    'Oui' => true,
+                    'Non' => false,
+                ),
+                'expanded' => true,
+                'data' => null,
+                'constraints' => [
+                    new NotNull([
+                        'message' => 'Veuillez saisir cette donnée.',
+                    ]),
+                ],
+                'label' => 'Les conditions techniques, matérielles et/ou administrative ?'
+            ])
+            ->add('desorganiseService',  ChoiceType::class, [
+                'choices' => array(
+                    'Oui' => true,
+                    'Non' => false,
+                ),
+                'expanded' => true,
+                'data' => null,
+                'constraints' => [
+                    new NotNull([
+                        'message' => 'Veuillez saisir cette donnée.',
+                    ]),
+                ],
+                'label' => '
                         La répartition des journées télétravaillées ne désorganise pas l\'activité du service 
                         (nombre de salariés en télétravail dépassant le quota journalier sur les journées souhaitées par le salarié...) et permet une présence sur site suffisante au regard de l\'activité, étant précisé que la Direction recommande 50% de présence ?'
-                    ])
-                    ->add('avisManager',  ChoiceType::class, [
-                        'choices' => array(
-                            'Favorable' => true,
-                            'Défavorable' => false,
-                        ),
-                        'expanded' => true,
-                        'data' => null,
-                        // 'attr' => [
-                        //     'style' => 'display: none;', // This applies to the field container
-                        // ],
-                    ])
-                    ->add('commentaireManager', TextareaType::class, [
-                        'label'  => 'Si avis défavorable, à préciser : ',
-                        'required' => false
-                    ]);
-                    // ->addEventSubscriber(new FormSubscriber($options['current_user']));
-        
+            ])
+            ->add('avisManager',  ChoiceType::class, [
+                'choices' => array(
+                    'Favorable' => true,
+                    'Défavorable' => false,
+                ),
+                'expanded' => true,
+                'data' => null,
+                // 'attr' => [
+                //     'style' => 'display: none;', // This applies to the field container
+                // ],
+            ])
+            ->add('commentaireManager', TextareaType::class, [
+                'label'  => 'Si avis défavorable, à préciser : ',
+                'required' => false
+            ]);
+        // ->addEventSubscriber(new FormSubscriber($options['current_user']));
+
 
 
 
