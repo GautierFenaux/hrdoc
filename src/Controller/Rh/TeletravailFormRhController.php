@@ -9,10 +9,10 @@ use App\Enum\StateEnum;
 use App\Entity\TeletravailForm;
 use App\Service\GetUserService;
 use App\Service\SendMailService;
-use App\Form\TeletravailFormType;
 use Symfony\UX\Turbo\TurboBundle;
 use App\Repository\UserRepository;
 use App\Service\UrlGeneratorService;
+use App\Form\Rh\RhTeletravailFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use App\Repository\TeletravailFormRepository;
@@ -65,7 +65,7 @@ class TeletravailFormRhController extends AbstractController
     #[Route('/{id}/show', name: 'app_teletravailform_rh_show', methods: ['GET'])]
     public function show(Request $request, TeletravailForm $teletravailForm): Response
     {
-        $form = $this->createForm(TeletravailFormType::class, $teletravailForm, [
+        $form = $this->createForm(RhTeletravailFormType::class, $teletravailForm, [
             'user_roles'  => $teletravailForm->getUser()->getRoles(),
             'request' => $request,
             'current_user' => $teletravailForm->getUser(),
@@ -85,7 +85,7 @@ class TeletravailFormRhController extends AbstractController
         $request = $this->requestStack->getCurrentRequest();
         $user =  $this->getUser();
 
-        $form = $this->createForm(TeletravailFormType::class, $teletravailForm, [
+        $form = $this->createForm(RhTeletravailFormType::class, $teletravailForm, [
             'user_roles'  => $user->getRoles(),
             'request' => $request,
             'current_user' => $user,

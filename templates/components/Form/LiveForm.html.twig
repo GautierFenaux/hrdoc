@@ -5,21 +5,28 @@
 			'novalidate': 'novalidate'
 	} %}
 
-	
+
 	{% set extraAttr = get_class_name(form.vars.value) == 'teletravailform' 
-    ? {
+    ? typeOfCollaborator == 'manager' ? {
         'data-controller': 'manager--teleworking',
         'data-manager--teleworking-target': 'form'
       }
-    : {}
+    : {
+		'data-controller':'rh--teleworking', 
+		'data-rh--teleworking-target':'form'
+		}
+	: {}
 	%}
 
 	{% set formAttr = defaultAttr|merge(extraAttr) %}
 
-	{{ form_start(form, {'attr': formAttr}) }} 
+	{{ form_start(form, {'attr': formAttr}) }}
 
-	{% include "manager/teletravail_form/_form_content.html.twig" with { 'form': form } %}
-		
-	
+	{% if typeOfCollaborator == 'rh' %}
+		{% include "rh/teletravail_form/_form_content.html.twig" with { 'form': form } %}
+	{% else %}
+		{% include "manager/teletravail_form/_form_content.html.twig" with { 'form': form } %}
+	{% endif %}
 
-{{ form_end(form) }}
+
+	{{ form_end(form) }}
