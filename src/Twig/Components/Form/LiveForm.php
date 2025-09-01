@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\Collaborator\TeletravailFormType;
 use App\Form\Manager\ManagerTeletravailFormType;
+use App\Repository\TeletravailFormRepository;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -25,29 +26,21 @@ class LiveForm extends AbstractController
     // public function __construct() {}
 
     public function __construct(
-        //   private ParameterBagInterface $parameterBag,
         private RequestStack $request,
         private FormService $formService,
-        // private EntityManagerInterface $entityManager
     ) {}
 
     use DefaultActionTrait;
     use ComponentWithFormTrait;
 
     #[LiveProp]
-    public null $initialFormData = null;
+    public ?TeletravailForm $initialFormData = null;
 
-    public ?string $typeOfCollaborator = 'collaborator';
 
     protected function instantiateForm(): FormInterface
     {
         $form = $this->initialFormData;
-        $request = $this->request->getCurrentRequest();
-        // dd($request->getPathInfo());
-        if(strpos($request->getPathInfo(), 'rh')) {
-            return $this->createForm(RhTeletravailFormType::class, $form);
-        }
-        return $this->createForm(TeletravailFormType::class, $form);
+        return $this->createForm(ManagerTeletravailFormType::class, $form);
     }
 
     #[LiveAction]
@@ -68,9 +61,9 @@ class LiveForm extends AbstractController
     //     dd($request->getPathInfo());
     // }
 
-    #[PostHydrate(priority: 1)]
-    public function resetTypeOfCollaborator(): void
-    {
-        $this->typeOfCollaborator = "rh";
-    }
+    // #[PostHydrate(priority: 1)]
+    // public function resetTypeOfCollaborator(): void
+    // {
+    //     $this->typeOfCollaborator = "rh";
+    // }
 }
